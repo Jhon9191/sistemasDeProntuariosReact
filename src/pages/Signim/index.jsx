@@ -17,14 +17,14 @@ const Signim = () => {
                         <input onChange={(e) => setCpf(e.target.value)} type="text" placeholder="CPF:" />
                         <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Senha:" />
                         <button type="submit">Login</button>
-                        <Link id="linkto" to="/register">Esqueci minha senha</Link>
+                        <Link id="linkto" to="/recover">Esqueci minha senha</Link>
                         <div style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 5 }}>
                             <input className="check" type="checkbox" defaultChecked={() => { }} onChange={() => { }} />
                             <spam id="spamCheck" >Mantenha-me conectado</spam>
                         </div>
 
                     </form>
-                    <Link id="linkto" to="/register">Criar uma nova conta</Link>
+                    <Link id="linkto" to="/cadastrar">Criar uma nova conta</Link>
                 </div>
             </div>
         </div>
