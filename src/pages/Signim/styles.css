@@ -1,33 +1,7 @@
-.container {
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #D70052;
-    /* background-image: url("https://wallpaperaccess.com/full/4965.jpg"); */
-    background-image: "background.jpg";
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;
-}
-
-
-.login {
-    background-color: #262626;
-    width: 30%;
-    padding: 2%;
-    margin: 5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column
-}
-
-@media screen and (max-width: 800px){
-    .login{
-        width: 60%;
+@media screen and (max-width: 600px){
+    .formulario{
+        width: 80%;
+        height: 350px;
     }
 }
 
@@ -47,14 +21,14 @@ form input{
     margin-bottom: 15px;
     border:0;
     border-radius: 5px;
-    padding: 5%;
+    padding: 3%;
     font-size: 15px;
     color: #000;
     background-color: #D2D0D0;
   }
   
   form button{
-    padding: 5%;
+    padding: 3%;
     border: 1px solid #D70052;
     border-color: #D70052;
     background-color: transparent;
@@ -62,6 +36,7 @@ form input{
     border-radius: 7px;
     font-size: 1rem;
     transition: all 0.3s;
+    margin-bottom: 15px;
   }
 
   form button:hover{
