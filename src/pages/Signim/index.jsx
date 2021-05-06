@@ -8,18 +8,23 @@ const Signim = () => {
     const [password, setPassword] = useState("")
 
     return (
-        <div class="img">
-            <div class="opac">
+        <div className="img">
+            <div className="opac">
                 <div className="login">
                     {/* <h1>Olá</h1> */}
                     <form>
-                        <h1>Entrar</h1>
+                        <h2>Entrar</h2>
                         <input onChange={(e) => setCpf(e.target.value)} type="text" placeholder="CPF:" />
                         <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="SENHA:" />
                         <button type="submit">Login</button>
-                    </form>
+                        <Link id="linkto" to="/register">Esqueci minha senha</Link>
+                        <div style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                            <input className="check" type="checkbox" defaultChecked={() => { }} onChange={() => { }} />
+                            <spam id="spamCheck" >Mantenha-me conectado</spam>
+                        </div>
 
-                    <Link to="/register">Criar uma nova conta</Link> 
+                    </form>
+                    <Link id="linkto" to="/register">Criar uma nova conta</Link>
                 </div>
             </div>
         </div>

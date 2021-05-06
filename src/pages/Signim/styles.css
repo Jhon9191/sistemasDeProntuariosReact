@@ -17,10 +17,18 @@
 .login {
     background-color: #262626;
     width: 30%;
+    padding: 2%;
+    margin: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column
+}
+
+@media screen and (max-width: 800px){
+    .login{
+        width: 60%;
+    }
 }
 
 form{
@@ -30,11 +38,9 @@ form{
     flex-direction: column;
 }
 
-form h1 {
+form h2 {
     text-align: center;
     margin-bottom: 0.5em;
-    font-size: 1.25rem;
-    color: #FFF;
 }
 
 form input{
@@ -48,14 +54,13 @@ form input{
   }
   
   form button{
-    height: 35px;
+    padding: 5%;
     border: 1px solid #D70052;
     border-color: #D70052;
     background-color: transparent;
     color: #D70052;
     border-radius: 7px;
-    background-color: none;
-    font-size: 0.9em;
+    font-size: 1rem;
     transition: all 0.3s;
   }
 
@@ -66,18 +71,19 @@ form input{
     color: #262626;
   }
   
-  .login a{
+.check{
+    margin-right: 15px;
+    width: 15px;
+    height: 15px;
+}
+
+.login a{
     margin: 1.5em 0;
     color: #FFF;
     cursor: pointer;
-  }
+}
 
-  Link{
-      color: #FFF;
-  }
-
-
-  .img{
+.img{
     background: url("./background.jpg") no-repeat center;
     background-size: cover;
     height: 100vh;
@@ -94,12 +100,4 @@ form input{
     display: flex;
 }
 
-.opac h1{
-    color: #FFF
-}
 
-@media screen and (max-width: 800px){
-    h1{
-        color: #1324
-    }
-}

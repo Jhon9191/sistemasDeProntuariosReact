@@ -31,8 +31,32 @@ button{
     cursor: pointer;
 }
 
+spam{
+    color: #FFF;
+    font-size: 1em;
+}
+
+h2{
+    color: #FFF;
+    font-size: 1.7em;
+}
+
+#linkto {
+    font-size: 1.2em;
+    color:#FFF;
+}
+
 @media screen and (max-width: 800px){
-    h1{
-        font-size: 0.5rem;
+    h2{
+        font-size: 1em;
     }
-  }
+    #linkto{
+        font-size:0.6em; 
+    }
+}
+
+@media screen and (max-width: 600px){
+    h2{
+        font-size: 0.7em;
+    }
+}
