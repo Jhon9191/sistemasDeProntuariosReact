@@ -11,7 +11,7 @@
 }
 
 html, body, #root{
-    height: 100%;
+    height: 100vh;
 }
 
 body{
@@ -31,8 +31,8 @@ button{
     cursor: pointer;
 }
 
-@media screen and (max-width: 400px){
-    span{
-        font-size: 0.5em;
+@media screen and (max-width: 800px){
+    h1{
+        font-size: 0.5rem;
     }
   }
