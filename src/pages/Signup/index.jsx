@@ -27,7 +27,7 @@ const Signup = () => {
                         </div>
 
                     </form>
-                    <Link id="linkto" to="/cadastrar">Já possuo uma conta</Link>
+                    <Link id="linkto" to="/">Já possuo uma conta</Link>
                 </div>
             </div>
         </div>

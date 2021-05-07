@@ -1,5 +1,5 @@
 import { Switch } from  'react-router-dom';
-import Route from './Route.jsx'
+import Route from './Route'
 
 import SignIn from '../pages/Signim/index.jsx';
 import SignUp from '../pages/Signup/index.jsx';
