@@ -1,0 +1,39 @@
+.navegation{
+    margin: 0;
+    padding: 0;
+    width: 300px;
+    background-color: #151515;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.navegation div{
+    margin-right: 15px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    background: url('../../assets/LOGOSPI.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150px;
+}
+
+.navegation a{
+    display: block;
+    color: rgba(255,255,255, 0.7);
+    background-color: #1d1d1d;
+    padding: 16px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: ease-in-out .3s;
+}
+.navegation a svg{
+    margin-right: .5em;
+  }
+.navegation a:hover{
+    background-color: #3D3D3D;
+    color: #FFF;
+}
