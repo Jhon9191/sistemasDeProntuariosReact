@@ -4,8 +4,17 @@
     background-color: #F2F3FA;
 }
 
-
 .content{
     margin-left: 300px;
     padding: 1px 16px;
+}
+
+.bodyContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em 0;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    padding: 0.8em;
 }
