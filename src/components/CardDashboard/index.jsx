@@ -14,8 +14,8 @@ const CardDashboard = ({ children, name, color, value }) => {
                 marginBottom: 25
             }}>
                 {children}
-                <h1 style={{paddingLeft: 15}}>{name}</h1>
-                <h1 style={{paddingRight: 15}}>{value}</h1>
+                <h1 style={{paddingLeft: 15, color:"#FFF"}}>{name}</h1>
+                <h1 style={{paddingRight: 15, color:"#FFF"}}>{value}</h1>
             </div>
     )
 }

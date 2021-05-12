@@ -17,21 +17,12 @@ const Dashboard = () => {
             </div>
 
             <div className="content">
-            <div className="bodyContent">
-                    <h1>Seja bem vindo paciente {name}</h1>
-                    <CardDashboard name="Quantidade de" color="roxo" value={0} />
-                    <CardDashboard name="Quantidade de" color="roxso" value={0} /> 
-                </div>
-            </div>
-
-            {/* <div className="content">
                 <div className="bodyContent">
                     <h1>Seja bem vindo paciente {name}</h1>
-                   <CardDashboard name="Quantidade de" color="roxo" value={0} />
-                <CardDashboard name="Quantidade de" color="roxso" value={0} /> 
+                    <CardDashboard name="Quantidade de consultas" color="roxo" value={0} />
+                    <CardDashboard name="Quantidade de psicólogos" color="roxso" value={0} />
                 </div>
-            </div> */}
-
+            </div>
         </div>
     )
 }
