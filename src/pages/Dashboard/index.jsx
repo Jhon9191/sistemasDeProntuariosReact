@@ -7,6 +7,11 @@ import Header from '../../components/Header'
 import CardDashboard from '../../components/CardDashboard';
 const Dashboard = () => {
     const [name, setName] = useState("João")
+
+    const handleCreateNewQuery = () => {
+        alert("Carregando")
+    }
+
     return (
         <div>
             <Sidebar />
@@ -18,9 +23,10 @@ const Dashboard = () => {
 
             <div className="content">
                 <div className="bodyContent">
-                    <h1>Seja bem vindo paciente {name}</h1>
+                    <h1 id="Title">Seja bem vindo paciente {name}</h1>
                     <CardDashboard name="Quantidade de consultas" color="roxo" value={0} />
                     <CardDashboard name="Quantidade de psicólogos" color="roxso" value={0} />
+                    <button onClick={()=>handleCreateNewQuery()}>Marcar consulta</button>
                 </div>
             </div>
         </div>
