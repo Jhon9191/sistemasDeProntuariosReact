@@ -5,7 +5,7 @@ const CardDashboard = ({ children, name, color, value }) => {
             <div style={{
                 backgroundColor: `${color === "roxo" ? "#860638" : "#AA0948"}`,
                 borderRadius: 5,
-                width: '95%',
+                width: '100%',
                 height: 130,
                 display: 'flex',
                 justifyContent: 'space-between',
