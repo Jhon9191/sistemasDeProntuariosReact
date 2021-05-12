@@ -9,7 +9,7 @@ const Dashboard = () => {
     const [name, setName] = useState("João")
 
     const handleCreateNewQuery = () => {
-        alert("Carregando")
+        alert(`alert ${name}`)
     }
 
     return (

@@ -1,7 +1,7 @@
 .navegation{
     margin: 0;
     padding: 0;
-    width: 300px;
+    width: 250px;
     background-color: #151515;
     position: fixed;
     height: 100%;
@@ -22,7 +22,7 @@
 .navegation a{
     display: block;
     color: rgba(255,255,255, 0.7);
-    background-color: #1d1d1d;
+    /* background-color: #1d1d1d; */
     padding: 16px;
     text-decoration: none;
     display: flex;
@@ -34,6 +34,7 @@
     margin-right: .5em;
   }
 .navegation a:hover{
-    background-color: #3D3D3D;
+    /* background-color: #999898; */
+    background-color: #1d1d1d;
     color: #FFF;
 }
