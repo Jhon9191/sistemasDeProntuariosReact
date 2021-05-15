@@ -3,7 +3,7 @@
     height: 100px;
     align-items: center;
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border-radius: 7px;
     background-color: #860638;
 }
@@ -11,4 +11,22 @@
 .cardPsicologos svg{
     margin-right: 35px;
     margin-left: 15px;
+}
+
+.paginator{
+    margin-top: 10px;
+}
+
+.paginator button{
+    background-color: transparent;
+    width: 40px;
+}
+.paginator spam{
+    background-color: #860638;
+    height: 40px;
+    width: 40px;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
