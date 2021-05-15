@@ -13,7 +13,7 @@ const Sidebar = () => {
                 Dashboard
             </Link>
 
-            <Link to="/customers">
+            <Link to="/psicologos">
                 <FiUser size={24} color="#fff" />
                 Psicólogos
             </Link>
