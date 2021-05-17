@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import Sidebar from '../../components/Sidebar';
-import { FiUser, FiChevronRight, FiChevronLeft} from 'react-icons/fi'
+import { FiUser, FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 import Header from '../../components/Header'
 import styles from './styles.css';
 import CardPsicologos from '../../components/CardPsicologos'
+import Paginator from '../../components/Paginator';
 
 const Psicologos = () => {
 
@@ -26,25 +27,10 @@ const Psicologos = () => {
                 <div className="bodyContent">
                     {list.map((item) => {
                         return (
-
-                            <CardPsicologos item={item}/>
-
+                            <CardPsicologos item={item} />
                         )
                     })}
-                    <div className="paginator" style={{
-                        display: 'flex',
-                        flexDirection: 'row', 
-                        alignItems: 'center',
-                        justifyContent: 'center', 
-                        width: "100%"}}>
-                    <button onClick={()=>{}}>
-                        <FiChevronLeft size={25} color="#860638" />
-                    </button>
-                     <spam>1</spam>   
-                    <button onClick={()=>{}}>
-                        <FiChevronRight size={25} color="#860638" />
-                    </button>
-                    </div>
+                    <Paginator />
                 </div>
             </div>
         </div>
