@@ -5,14 +5,19 @@ import Header from '../../components/Header'
 import styles from './styles.css';
 import CardPsicologos from '../../components/CardPsicologos'
 import Paginator from '../../components/Paginator';
+import { AuthContext } from '../../context/auth'
+import { useLocation, useHistory } from 'react-router-dom'
+
 
 const Psicologos = () => {
 
-    const [list, setList] = useState([
-        { id: 1, nome: "Joao", especialidade: "Adultos" },
-        { id: 2, nome: "Jamil", especialidade: "Acidentes de carro" },
-        { id: 3, nome: "Alef", especialidade: "Traumas" },
-    ]);
+    // const history = useHistory();
+    // const location = useLocation();
+
+    // const [ page, setPage ] = useState(
+        
+    // );
+    const { list2 } = useContext(AuthContext);
 
     return (
         <div>
@@ -25,7 +30,7 @@ const Psicologos = () => {
 
             <div className="content">
                 <div className="bodyContent">
-                    {list.map((item) => {
+                    {list2.map((item) => {
                         return (
                             <CardPsicologos item={item} />
                         )
