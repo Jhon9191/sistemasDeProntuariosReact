@@ -22,7 +22,7 @@ const Paginator = () => {
             </button>
             }
             <spam>{page}</spam>
-            {page === (Math.round(list.length/3)) ? (<></>) : 
+            {page === (Math.ceil(list.length/3)) ? (<></>) : 
             <button onClick={() => nextPage()}>
                 <FiChevronRight size={25} color="#860638" />
             </button>

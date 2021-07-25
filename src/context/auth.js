@@ -21,6 +21,7 @@ function AuthProvider  ({ children }) {
         { id: 6, nome: "nome6", especialidade: "Traumas" },
         { id: 7, nome: "nome7", especialidade: "Traumas" },
         { id: 8, nome: "nome8", especialidade: "Traumas" },
+        { id: 9, nome: "nome8", especialidade: "Traumas" },
     ]);
 
     const [starPage, setStarPage] = useState(0);
