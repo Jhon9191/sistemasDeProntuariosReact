@@ -8,7 +8,7 @@ import Header from '../../components/Header'
 import CardDashboard from '../../components/CardDashboard';
 const Dashboard = () => {
     const [name, setName] = useState("João")
-    
+
     return (
         <div>
             <Sidebar />
@@ -23,9 +23,7 @@ const Dashboard = () => {
                     <h1 id="Title">Seja bem vindo paciente {name}</h1>
                     <CardDashboard name="Quantidade de consultas" color="roxo" value={0} />
                     <CardDashboard name="Quantidade de psicólogos" color="roxso" value={0} />
-                    <button>
-                        <Link to="Marcar" id="met">Marcar consulta</Link>
-                    </button>
+                    <Link className="buttonMarcar" to="Marcar" id="met">Marcar consulta</Link>
                 </div>
             </div>
         </div>

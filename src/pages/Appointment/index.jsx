@@ -20,7 +20,12 @@ function Appointment() {
             <div className="content">
                 <div className="bodyContent">
                     <h1 id="Title">Informe os dados para agendar uma consulta</h1>
-                    <InputPerson placeholder="Selecionar Psicologo" hasIcon={true} />
+                    <div className="centered">
+                        <InputPerson placeholder="Selecionar Psicologo" hasIcon={true} />
+                        <InputPerson placeholder="Selecionar Psicologo" hasIcon={true} />
+                        <InputPerson placeholder="Selecionar Psicologo" hasIcon={true} />
+                        <InputPerson placeholder="Selecionar Psicologo" hasIcon={true} />
+                    </div>
                 </div>
             </div>
 

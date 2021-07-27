@@ -6,7 +6,7 @@ function InputPerson({ children, placeholder, hasIcon }) {
     return (
         <div className="input">
             {children}
-            <input placeholder={placeholder}/>
+            <spam>{placeholder}</spam>
             {hasIcon === true ?  (
             <BsFillCaretDownFill size={20} color="#FFF"/>
             ): (<></>)}
