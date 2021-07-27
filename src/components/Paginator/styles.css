@@ -1,0 +1,23 @@
+.paginator{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 15%;
+}
+
+.paginator  div {
+    cursor: pointer;
+}
+
+.paginator  spam {
+    font-weight: bold;
+}
+
+.paginator button{
+    transition: all 0.3s;
+}
+
+.paginator button:hover{
+    size: 20px;
+}

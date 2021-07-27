@@ -1,7 +1,8 @@
-import React, { 
+import React, {
     useContext
-    } from 'react';
-import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
+} from 'react';
+import { BsFillCaretLeftFill, BsFillCaretRightFill } from 'react-icons/bs'
+import styles from './styles.css';
 import { AuthContext } from '../../context/auth'
 
 const Paginator = () => {
@@ -9,24 +10,24 @@ const Paginator = () => {
     const { page, list, nextPage, previusPage } = useContext(AuthContext);
 
     return (
-        <div className="paginator" style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: "100%"
-        }}>
-            {page === 1 ? (<></>) : 
-            <button onClick={() => previusPage()}>
-                <FiChevronLeft size={25} color="#860638" />
-            </button>
-            }
-            <spam>{page}</spam>
-            {page === (Math.ceil(list.length/3)) ? (<></>) : 
-            <button onClick={() => nextPage()}>
-                <FiChevronRight size={25} color="#860638" />
-            </button>
-            }
+        <div style={{ justifyContent: 'center', width: '100%', display: 'flex', flexDirection: 'row' }}>
+            <div className="paginator">
+                {page === 1 ? (
+                    <BsFillCaretLeftFill size={25} color="#F2F3FA" />
+                ) :
+                    <div onClick={() => previusPage()}>
+                        <BsFillCaretLeftFill size={25} color="#860638" />
+                    </div>
+                }
+                <spam>{page}</spam>
+                {page === (Math.ceil(list.length / 3)) ? (
+                    <BsFillCaretRightFill size={25} color="#F2F3FA" />
+                ) :
+                    <div onClick={() => nextPage()}>
+                        <BsFillCaretRightFill size={25} color="#860638" />
+                    </div>
+                }
+            </div>
         </div>
     )
 }
