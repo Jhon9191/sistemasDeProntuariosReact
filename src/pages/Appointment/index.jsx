@@ -4,6 +4,7 @@ import { BsReverseLayoutTextWindowReverse } from 'react-icons/bs'
 
 import Header from '../../components/Header'
 import styles from './styles.css';
+import InputPerson from '../../components/InputPerson';
 
 function Appointment() {
     return (
@@ -19,8 +20,10 @@ function Appointment() {
             <div className="content">
                 <div className="bodyContent">
                     <h1 id="Title">Informe os dados para agendar uma consulta</h1>
+                    <InputPerson placeholder="Selecionar Psicologo" hasIcon={true} />
                 </div>
             </div>
+
 
         </div>
     );
