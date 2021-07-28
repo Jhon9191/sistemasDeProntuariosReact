@@ -1,0 +1,25 @@
+.buttonPerson{
+    margin-top: 5px;
+    border: 1px solid #D70052;
+    border-color: #D70052;
+    background-color: transparent;
+    color: #D70052;
+    border-radius: 7px;
+    font-size: 1rem;
+    transition: all 0.3s;
+    margin-bottom: 15px;
+    width: 360px;
+    height: 40px;
+    padding: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.buttonPerson:hover{
+    border: 1px solid #D70052;
+    border-color: #D70052;
+    background-color: #D70052;
+    color: #FFF;
+}

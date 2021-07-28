@@ -1,17 +1,17 @@
-.input {
+.Textinput {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     background-color: #D2D0D0;
     width: 360px;
-    height: 40px;
+    height: 80px;
     padding: 7px;
     margin: 3px;
     border-radius: 7px;
 }
 
-.input spam{
+.Textinput textarea {
+    resize: none;
     font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
     color: #6D6D6D;
     font-size: 1.05em;
     background-color: transparent;

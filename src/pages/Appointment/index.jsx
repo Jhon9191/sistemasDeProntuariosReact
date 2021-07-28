@@ -5,6 +5,8 @@ import { BsReverseLayoutTextWindowReverse } from 'react-icons/bs'
 import Header from '../../components/Header'
 import styles from './styles.css';
 import InputPerson from '../../components/InputPerson';
+import TextInputPerson from '../../components/TextInputPerson';
+import ButtonPerson from '../../components/ButtonPerson';
 
 function Appointment() {
     return (
@@ -20,12 +22,14 @@ function Appointment() {
             <div className="content">
                 <div className="bodyContent">
                     <h1 id="Title">Informe os dados para agendar uma consulta</h1>
-                    <div className="centered">
+                    <form className="centered">
                         <InputPerson placeholder="Selecionar Psicologo" hasIcon={true} />
                         <InputPerson placeholder="Selecionar Psicologo" hasIcon={true} />
                         <InputPerson placeholder="Selecionar Psicologo" hasIcon={true} />
                         <InputPerson placeholder="Selecionar Psicologo" hasIcon={true} />
-                    </div>
+                        <TextInputPerson placeholder="Descreva sua solicitação"/>
+                        <ButtonPerson text="Marcar"/>
+                    </form>
                 </div>
             </div>
 
