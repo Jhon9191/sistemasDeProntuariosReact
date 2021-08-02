@@ -1,19 +1,26 @@
 .input {
+    font-size: 1.20em;
+    font-weight: bold;
+    color: rgba(215, 0, 82, 0.7);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #D2D0D0;
+    background-color: #dfdddd;
     width: 360px;
-    height: 40px;
-    padding: 7px;
+    height: 25px;
+    padding: 20px;
     margin: 3px;
     border-radius: 7px;
 }
 
 .input spam{
     font-family: Arial, Helvetica, sans-serif;
-    color: #6D6D6D;
-    font-size: 1.05em;
+    color: rgba(215, 0, 82, 0.7);
+    font-size: 1em;
     background-color: transparent;
     border-width: 0px;
+}
+
+.button{
+    cursor: pointer;
 }

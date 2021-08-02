@@ -1,15 +1,19 @@
 import React from 'react';
 import './styles.css';
-import { BsFillCaretDownFill} from 'react-icons/bs'
+import { BsFillCaretDownFill } from 'react-icons/bs'
 
-function InputPerson({ children, placeholder, hasIcon }) {
+function InputPerson({ children, placeholder, hasIcon, type, funcao }) {
     return (
-        <div className="input">
-            {children}
-            <spam>{placeholder}</spam>
-            {hasIcon === true ?  (
-            <BsFillCaretDownFill size={20} color="#FFF"/>
-            ): (<></>)}
+        <div>
+            {hasIcon === true ? (
+                <div className="input">
+                    {children}
+                    <spam>{placeholder}</spam>
+                    <BsFillCaretDownFill className="button" onClick={funcao} size={20} color="rgba(215, 0, 82)" />
+                </div>
+            ) : (
+                <input className="input" placeholder={placeholder} type={type} min="0" max="5"/>
+            )}
         </div>
     );
 }

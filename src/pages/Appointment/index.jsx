@@ -23,10 +23,12 @@ function Appointment() {
                 <div className="bodyContent">
                     <h1 id="Title">Informe os dados para agendar uma consulta</h1>
                     <form className="centered">
-                        <InputPerson placeholder="Selecionar Psicologo" hasIcon={true} />
-                        <InputPerson placeholder="Selecionar Psicologo" hasIcon={true} />
-                        <InputPerson placeholder="Selecionar Psicologo" hasIcon={true} />
-                        <InputPerson placeholder="Selecionar Psicologo" hasIcon={true} />
+                        <InputPerson type="time"/>
+                        <InputPerson type="date"/>
+                        <InputPerson type="number" min="0" max="10"/>
+                        <InputPerson placeholder="Selecionar psicologo" hasIcon={true} funcao={()=>alert("hi")}/>
+                        <InputPerson placeholder="Selecionar psicologo" hasIcon={true} funcao={()=>alert("hi")}/>
+                        <InputPerson placeholder="Selecionar psicologo" hasIcon={true} funcao={()=>alert("hi")}/>
                         <TextInputPerson placeholder="Descreva sua solicitação"/>
                         <ButtonPerson text="Marcar"/>
                     </form>

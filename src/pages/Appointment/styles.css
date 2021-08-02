@@ -5,3 +5,13 @@
     align-items:center;
     flex-direction:column; 
 }
+
+::-webkit-calendar-picker-indicator{
+    cursor: pointer;
+    filter: invert(0.8) brightness(44.2%) sepia(100%) saturate(10000%) hue-rotate(337deg);
+}
+
+::-webkit-numeric-picker-indicator{
+    cursor: pointer;
+    filter: invert(0.8) brightness(44.2%) sepia(100%) saturate(10000%) hue-rotate(337deg);
+}
