@@ -17,3 +17,9 @@
     background-color: transparent;
     border-width: 0px;
 }
+
+@media screen and (max-width: 400px){
+    .Textinput{
+        width: 190px;
+    }
+}

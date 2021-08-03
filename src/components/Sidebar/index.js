@@ -24,7 +24,7 @@ const Sidebar = () => {
                 Consultas
             </Link>
 
-            <Link to="/profile">
+            <Link to="/Profile">
                 <FiSettings size={24} color="#fff" />
                 Perfil
             </Link>

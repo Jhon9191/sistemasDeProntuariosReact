@@ -56,15 +56,21 @@ h2{
         font-size:0.6em; 
     }
     .bodyContent{
-        width: 400px;
+        width: 420px;
     }.title{
-        width: 430px;
+        width: 450px;
     }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 400px){
     h2{
         font-size: 0.7em;
+    }
+    .bodyContent{
+        width: 290px;
+    }
+    .title{
+        width: 320px;
     }
 }
 

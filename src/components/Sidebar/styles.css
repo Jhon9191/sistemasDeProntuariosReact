@@ -38,3 +38,9 @@
     background-color: #1d1d1d;
     color: #FFF;
 }
+
+@media screen and (max-width: 800px){
+    .navegation{
+        width: 150px;
+    }
+}

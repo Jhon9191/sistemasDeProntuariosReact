@@ -20,10 +20,10 @@ const Psicologos = () => {
     const { list2 } = useContext(AuthContext);
 
     return (
-        <div style={{width: '100%'}}>
+        <div >
             <Sidebar />
             <div className="content">
-                <Header name="Dashboard">
+                <Header name="Psicologos">
                     <FiUser size={25} />
                 </Header>
             </div>
