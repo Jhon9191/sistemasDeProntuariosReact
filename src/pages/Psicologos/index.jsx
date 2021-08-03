@@ -20,7 +20,7 @@ const Psicologos = () => {
     const { list2 } = useContext(AuthContext);
 
     return (
-        <div>
+        <div style={{width: '100%'}}>
             <Sidebar />
             <div className="content">
                 <Header name="Dashboard">
@@ -30,6 +30,7 @@ const Psicologos = () => {
 
             <div className="content">
                 <div className="bodyContent">
+                <h1 id="Title">Psicologos disponiveis</h1>
                     {list2.map((item) => {
                         return (
                             <CardPsicologos item={item} />

@@ -55,6 +55,11 @@ h2{
     #linkto{
         font-size:0.6em; 
     }
+    .bodyContent{
+        width: 400px;
+    }.title{
+        width: 430px;
+    }
 }
 
 @media screen and (max-width: 600px){
