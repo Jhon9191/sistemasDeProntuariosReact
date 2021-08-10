@@ -19,7 +19,7 @@ const Sidebar = () => {
                 Psicólogos
             </Link>
 
-            <Link to="/">
+            <Link to="/Consultas">
                 <BsReverseLayoutTextWindowReverse size={24} color="#fff" />
                 Consultas
             </Link>

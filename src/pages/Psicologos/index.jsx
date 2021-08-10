@@ -5,6 +5,7 @@ import Header from '../../components/Header'
 import styles from './styles.css';
 import CardPsicologos from '../../components/CardPsicologos'
 import Paginator from '../../components/Paginator';
+import AlertMessage from '../../components/AlertMessage';
 import { AuthContext } from '../../context/auth'
 import { useLocation, useHistory } from 'react-router-dom'
 
@@ -15,7 +16,7 @@ const Psicologos = () => {
     // const location = useLocation();
 
     // const [ page, setPage ] = useState(
-        
+
     // );
     const { list2 } = useContext(AuthContext);
 
@@ -30,13 +31,19 @@ const Psicologos = () => {
 
             <div className="content">
                 <div className="bodyContent">
-                <h1 id="Title">Psicologos disponiveis</h1>
-                    {list2.map((item) => {
-                        return (
-                            <CardPsicologos item={item} />
-                        )
-                    })}
-                    <Paginator />
+                    {list2.length == 0 ? (
+                        <AlertMessage text="Não existem psicologos disponíveis!" />
+                    ) : (
+                        <div style={{width: '100%'}}>
+                            <h1 id="Title">Psicologos disponiveis</h1>
+                            {list2.map((item) => {
+                                return (
+                                    <CardPsicologos item={item} />
+                                )
+                            })}
+                            <Paginator />
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

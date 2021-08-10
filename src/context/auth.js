@@ -12,17 +12,7 @@ function AuthProvider  ({ children }) {
     const [ loadingAuth, setLoagingAuth ] = useState(true);
     const [ loading, setLoaging ] = useState(false);
 
-    const [list, setList] = useState([
-        { id: 1, nome: "Joao", especialidade: "Adultos" },
-        { id: 2, nome: "Jamil", especialidade: "Acidentes de carro" },
-        { id: 3, nome: "Alef", especialidade: "Traumas" },
-        { id: 4, nome: "nome4", especialidade: "Traumas" },
-        { id: 5, nome: "nome5", especialidade: "Traumas" },
-        { id: 6, nome: "nome6", especialidade: "Traumas" },
-        { id: 7, nome: "nome7", especialidade: "Traumas" },
-        { id: 8, nome: "nome8", especialidade: "Traumas" },
-        { id: 9, nome: "nome8", especialidade: "Traumas" },
-    ]);
+    const [list, setList] = useState([]);
 
     const [starPage, setStarPage] = useState(0);
     const [endPage, setEndPage] = useState(3);

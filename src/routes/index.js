@@ -7,6 +7,7 @@ import Dashboard from '../pages/Dashboard/index.jsx';
 import Psicologos from '../pages/Psicologos/index.jsx';
 import Marcar from '../pages/Appointment/index.jsx';
 import Profile from '../pages/Profile/index.jsx';
+import Consultas from '../pages/Queries/index.jsx';
 
 const Routes = () => {
     return (
@@ -17,6 +18,7 @@ const Routes = () => {
             <Route exact path="/psicologos" component={Psicologos} isPrivate/>
             <Route exact path="/marcar" component={Marcar} isPrivate/>
             <Route exact path="/Profile" component={Profile} isPrivate/>
+            <Route exact path="/Consultas" component={Consultas} isPrivate/>
         </Switch>
     );
 }
