@@ -8,7 +8,7 @@ export const AuthContext = createContext({});
 
 function AuthProvider  ({ children }) {
     
-    const [ user,setUser ] = useState({name: 'João'});
+    const [ user,setUser ] = useState();
     const [ loadingAuth, setLoagingAuth ] = useState(true);
     const [ loading, setLoaging ] = useState(false);
 
@@ -40,7 +40,11 @@ function AuthProvider  ({ children }) {
     useEffect(()=>{
         setList2([]);
         setList2(list.slice(starPage,endPage))
-    },[page])
+    },[page]);
+
+    async function signin(){
+
+    }
 
     return (
         <AuthContext.Provider value={{ 

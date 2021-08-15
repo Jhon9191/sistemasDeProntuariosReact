@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom'
 
 const Signup = () => {
 
-    const [ cpf, setCpf ] = useState("");
-    const [ email, setEmail ] = useState("");
+    const [ cpf, setCpf ] = useState(""); 
+    const [ email, setEmail ] = useState(""); 
+    const [ name, setName ] = useState(""); 
     const [ password, setPassword ] = useState("");
     const [ repeatPassword, setRepeatPassword ] = useState("");
 
@@ -17,7 +18,8 @@ const Signup = () => {
                     <form>
                         <h2>Cadastrar</h2>
                         <input onChange={(e) => setCpf(e.target.value)} type="text" placeholder="CPF:" />
-                        <input onChange={(e) => setEmail(e.target.value)} type="password" placeholder="Email:" />
+                        <input onChange={(e) => setEmail(e.target.value)} type="e-mail" placeholder="Nome:" />
+                        <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Email:" />
                         <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Senha:" />
                         <input onChange={(e) => setRepeatPassword(e.target.value)} type="password" placeholder="Repetir senha:" />
                         <button type="submit">Login</button>
