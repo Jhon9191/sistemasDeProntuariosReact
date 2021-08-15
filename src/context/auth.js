@@ -3,6 +3,7 @@ useState,
 useEffect, 
 createContext 
 } from 'react';
+import firebase from "../services/firebase"
 
 export const AuthContext = createContext({});
 
@@ -42,8 +43,8 @@ function AuthProvider  ({ children }) {
         setList2(list.slice(starPage,endPage))
     },[page]);
 
-    async function signin(){
-
+    async function signin(nome, email, senha){
+        await firebase.auth.
     }
 
     return (
