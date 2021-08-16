@@ -23,8 +23,6 @@ function AuthProvider  ({ children }) {
     const [list2, setList2] = useState([]);
     
     const nextPage = () => {
-        // console.log(`${((list.length/3)+0.33)}`)
-        //  if(page < endPage )
             setPage(page+1);
             setStarPage(starPage+3);
             setEndPage(endPage+3);
@@ -43,8 +41,34 @@ function AuthProvider  ({ children }) {
         setList2(list.slice(starPage,endPage))
     },[page]);
 
-    async function signin(nome, email, senha){
-        await firebase.auth.
+    async function signup(email, password, name, cpf) {
+        console.log(email, password, name)
+        await firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(async (value) => {
+                let uid = value.user.uid;
+                await firebase.firestore().collection('users')
+                    .doc(uid).set({
+                        name: name,
+                        cpf: cpf
+                    })
+                    .then(() => {
+                        let data = {
+                            uid: uid,
+                            cpf: cpf,
+                            name: name,
+                            email: value.user.email,
+                        }
+                        setUser(data)
+                        storageUser(data)
+                    })
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+    function storageUser(data){
+        localStorage.setItem("userDate", JSON.stringify(data));
     }
 
     return (
@@ -56,7 +80,8 @@ function AuthProvider  ({ children }) {
             endPage,
             page,
             nextPage,
-            previusPage
+            previusPage,
+            signup
             }}>
             { children }
         </AuthContext.Provider>

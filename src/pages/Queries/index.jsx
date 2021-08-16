@@ -7,7 +7,7 @@ import Header from '../../components/Header'
 import CardConsulta from '../../components/CardConsulta';
 import AlertMessage from '../../components/AlertMessage';
 import { Link } from 'react-router-dom';
-
+import firebase from '../../services/firebase'
 function Queries() {
     return (
         <div>

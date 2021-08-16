@@ -1,13 +1,13 @@
 import { Switch } from  'react-router-dom';
 import Route from './Route'
 
-import SignIn from '../pages/Signim/index.jsx';
-import SignUp from '../pages/Signup/index.jsx';
-import Dashboard from '../pages/Dashboard/index.jsx';
-import Psicologos from '../pages/Psicologos/index.jsx';
-import Marcar from '../pages/Appointment/index.jsx';
-import Profile from '../pages/Profile/index.jsx';
-import Consultas from '../pages/Queries/index.jsx';
+import SignIn from '../pages/Signim';
+import SignUp from '../pages/Signup';
+import Dashboard from '../pages/Dashboard';
+import Psicologos from '../pages/Psicologos';
+import Marcar from '../pages/Appointment';
+import Profile from '../pages/Profile';
+import Consultas from '../pages/Queries';
 
 const Routes = () => {
     return (
