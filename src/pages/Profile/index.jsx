@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Sidebar from '../../components/Sidebar';
 import { FiHome, FiUser, FiSettings } from 'react-icons/fi'
 
@@ -6,10 +6,17 @@ import Header from '../../components/Header'
 import styles from './styles.css';
 import InputPerson from '../../components/InputPerson';
 import { Link } from 'react-router-dom';
-import TextInputPerson from '../../components/TextInputPerson';
 import ButtonPerson from '../../components/ButtonPerson';
+import { AuthContext } from '../../context/auth';
 
 function Appointment() {
+
+    const { logoutUser } = useContext(AuthContext)
+
+    function logout() {
+        logoutUser();
+    }
+
     return (
         <div>
             <Sidebar />
@@ -28,6 +35,7 @@ function Appointment() {
                         <InputPerson type="text" placeholder="Email:"/>
                         <InputPerson type="text" placeholder="CPF:"/>
                         <ButtonPerson text="Salvar alterações"/>
+                        <ButtonPerson text="Sair" func={logout}/>
                         <Link className="recuperar" to="Marcar" >Recuperar senha</Link>
                     </form>
                 </div>

@@ -1,11 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styles from './styles.css';
-
+import { AuthContext } from '../../context/auth';
 import { Link } from 'react-router-dom'
 const Signim = () => {
 
-    const [cpf, setCpf] = useState("")
+    const [email, setEmail] = useState("")
+    const [emailEmpty, setEmailEmpty] = useState(false)
     const [password, setPassword] = useState("")
+    const [passwordEmpty, setPasswordEmpty] = useState(false)
+
+    const { signin } = useContext(AuthContext)
+
+    useEffect(() => {
+        if (email !== "") {
+            setEmailEmpty(false)
+        }
+        if (password !== "") {
+            setPasswordEmpty(false)
+        }
+    }, [email, password]);
+
+    function logar(e) {
+        e.preventDefault();
+        if (email !== "" && password !== "") {
+            signin(email, password)
+        }
+        if (email === "") {
+            setEmailEmpty(true)
+        }
+        if (password === "") {
+            setPasswordEmpty(true)
+        }
+    }
 
     return (
         <div className="img">
@@ -14,9 +40,11 @@ const Signim = () => {
                     {/* <h1>Olá</h1> */}
                     <form>
                         <h2>Entrar</h2>
-                        <input onChange={(e) => setCpf(e.target.value)} type="text" placeholder="CPF:" />
+                        <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="E-mail:" />
+                        {emailEmpty && <h1 className="nemptyNotification">*Preencha o campo com seu e-mail!</h1>}
                         <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Senha:" />
-                        <button type="submit">Login</button>
+                        {passwordEmpty && <h1 className="nemptyNotification">*Preencha o campo com sua senha!</h1>}
+                        <button type="submit" onClick={logar}>Login</button>
                         <Link id="linkto" to="/recover">Esqueci minha senha</Link>
                         <div style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 5 }}>
                             <input className="check" type="checkbox" defaultChecked={() => { }} onChange={() => { }} />
