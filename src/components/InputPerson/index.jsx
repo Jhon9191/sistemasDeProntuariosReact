@@ -12,7 +12,7 @@ function InputPerson({ children, placeholder, hasIcon, type, funcao }) {
                     <BsFillCaretDownFill className="button" onClick={funcao} size={20} color="rgba(215, 0, 82)" />
                 </div>
             ) : (
-                <input className="input" placeholder={placeholder} type={type} min="0" max="5"/>
+                <input className="input" onChange={funcao} placeholder={placeholder} type={type} min="0" max="5"/>
             )}
         </div>
     );

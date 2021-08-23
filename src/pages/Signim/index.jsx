@@ -9,7 +9,7 @@ const Signim = () => {
     const [password, setPassword] = useState("")
     const [passwordEmpty, setPasswordEmpty] = useState(false)
 
-    const { signin } = useContext(AuthContext)
+    const { signin, user } = useContext(AuthContext)
 
     useEffect(() => {
         if (email !== "") {

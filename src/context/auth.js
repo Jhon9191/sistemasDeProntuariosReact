@@ -58,7 +58,8 @@ function AuthProvider({ children }) {
                 await firebase.firestore().collection('users')
                     .doc(uid).set({
                         name: name,
-                        cpf: cpf
+                        cpf: cpf,
+                        tipo: "paciente"
                     })
                     .then(() => {
                         let data = {
@@ -66,6 +67,7 @@ function AuthProvider({ children }) {
                             cpf: cpf,
                             name: name,
                             email: value.user.email,
+                            tipo: "paciente"
                         }
                         setUser(data)
                         storageUser(data)
@@ -86,6 +88,7 @@ function AuthProvider({ children }) {
                     uid: uid,
                     cpf: userProfile.data().cpf,
                     name: userProfile.data().name,
+                    tipo: userProfile.data().tipo,
                     email: value.user.email,
                 }
                 setUser(data)

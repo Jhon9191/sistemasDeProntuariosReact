@@ -7,7 +7,7 @@ const RouteWrapper = ({
     ...rest
 }) => {
 
-    const { signed, loading } = useContext(AuthContext);
+    const { signed, loading, user } = useContext(AuthContext);
     
     if (loading) {
         return (
@@ -20,10 +20,12 @@ const RouteWrapper = ({
         return <Redirect to="/" />
     }
 
-    if (signed && !isPrivate) {
+    if (signed && !isPrivate && user.tipo == "paciente") {
+        console.log(user.tipo)
         return <Redirect to="/dashboard" />
     }
-
+    
+    
     return (
         <Route
             {...rest}

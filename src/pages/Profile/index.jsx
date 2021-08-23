@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Sidebar from '../../components/Sidebar';
 import { FiHome, FiUser, FiSettings } from 'react-icons/fi'
 
@@ -8,13 +8,32 @@ import InputPerson from '../../components/InputPerson';
 import { Link } from 'react-router-dom';
 import ButtonPerson from '../../components/ButtonPerson';
 import { AuthContext } from '../../context/auth';
+import firebase from '../../services/firebase';
 
 function Appointment() {
 
-    const { logoutUser } = useContext(AuthContext)
+    const { logoutUser, user } = useContext(AuthContext)
+    const [cpf, setCpf] = useState("");
+    const [name, setName] = useState("");
 
     function logout() {
         logoutUser();
+    }
+
+    function updateInformations() {
+        if (name !== "") {
+            firebase.firestore().collection('users')
+                .doc(user.uid).update({
+                    name: name
+                })
+        }
+        if (cpf !== "") {
+            firebase.firestore().collection('users')
+                .doc(user.uid).update({
+                    cpf: cpf
+                })
+        }
+        //firebase.firestore().doc
     }
 
     return (
@@ -31,11 +50,10 @@ function Appointment() {
                 <div className="bodyContent">
                     <h1 id="Title">Seu perfil</h1>
                     <form className="centered">
-                        <InputPerson type="text" placeholder="Nome:"/>
-                        <InputPerson type="text" placeholder="Email:"/>
-                        <InputPerson type="text" placeholder="CPF:"/>
-                        <ButtonPerson text="Salvar alterações"/>
-                        <ButtonPerson text="Sair" func={logout}/>
+                        <InputPerson funcao={(e) => setName(e.target.value)} type="text" placeholder="Nome:" />
+                        <InputPerson funcao={(e) => setCpf(e.target.value)} type="text" placeholder="CPF:" />
+                        <ButtonPerson func={updateInformations} text="Salvar alterações" />
+                        <ButtonPerson text="Sair" func={logout} />
                         <Link className="recuperar" to="Marcar" >Recuperar senha</Link>
                     </form>
                 </div>
