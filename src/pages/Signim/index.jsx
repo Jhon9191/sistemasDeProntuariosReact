@@ -2,12 +2,15 @@ import React, { useState, useContext, useEffect } from 'react';
 import styles from './styles.css';
 import { AuthContext } from '../../context/auth';
 import { Link } from 'react-router-dom'
+import Modal from '../../components/Modal'
+
 const Signim = () => {
 
     const [email, setEmail] = useState("")
     const [emailEmpty, setEmailEmpty] = useState(false)
     const [password, setPassword] = useState("")
     const [passwordEmpty, setPasswordEmpty] = useState(false)
+    const [ showPostModal, setShoePostModal ] = useState(false);
 
     const { signin, user } = useContext(AuthContext)
 
@@ -24,6 +27,8 @@ const Signim = () => {
         e.preventDefault();
         if (email !== "" && password !== "") {
             signin(email, password)
+        }else{
+            loadItem()
         }
         if (email === "") {
             setEmailEmpty(true)
@@ -31,6 +36,10 @@ const Signim = () => {
         if (password === "") {
             setPasswordEmpty(true)
         }
+    }
+
+    const loadItem = () =>{
+        setShoePostModal(!showPostModal);
     }
 
     return (
@@ -55,6 +64,14 @@ const Signim = () => {
                     <Link id="linkto" to="/cadastrar">Criar uma nova conta</Link>
                 </div>
             </div>
+            {showPostModal && (
+                <Modal
+                    emote="😬"
+                    title="Ops!"
+                    subtitle="Não foi possivel conectar"
+                    close={loadItem}
+                />
+            )}
         </div>
 
 

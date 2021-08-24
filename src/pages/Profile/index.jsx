@@ -33,7 +33,6 @@ function Appointment() {
                     cpf: cpf
                 })
         }
-        //firebase.firestore().doc
     }
 
     return (
