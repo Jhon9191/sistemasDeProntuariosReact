@@ -9,15 +9,21 @@ import { Link } from 'react-router-dom';
 import ButtonPerson from '../../components/ButtonPerson';
 import { AuthContext } from '../../context/auth';
 import firebase from '../../services/firebase';
+import Modal from '../../components/Modal'
 
 function Appointment() {
 
-    const { logoutUser, user } = useContext(AuthContext)
+    const { logoutUser, user, setUser, storageUser } = useContext(AuthContext)
     const [cpf, setCpf] = useState("");
     const [name, setName] = useState("");
+    const [ showPostModal, setShoePostModal ] = useState(false);
 
     function logout() {
         logoutUser();
+    }
+
+    const loadItem = () =>{
+        setShoePostModal(!showPostModal);
     }
 
     function updateInformations() {
@@ -25,12 +31,28 @@ function Appointment() {
             firebase.firestore().collection('users')
                 .doc(user.uid).update({
                     name: name
+                }).then(()=>{
+                    let data = {
+                        ...user, 
+                        name: name
+                    }
+                    setUser(data);
+                    storageUser(data);
+                    loadItem();
                 })
         }
         if (cpf !== "") {
             firebase.firestore().collection('users')
                 .doc(user.uid).update({
                     cpf: cpf
+                }).then(()=>{
+                    let data = {
+                        ...user, 
+                        cpf: cpf
+                    }
+                    setUser(data);
+                    storageUser(data);
+                    loadItem();
                 })
         }
     }
@@ -57,7 +79,15 @@ function Appointment() {
                     </form>
                 </div>
             </div>
-
+            {showPostModal && (
+                <Modal
+                    margem={200}
+                    emote="😄"
+                    title="Prontinho!"
+                    subtitle="Dados alterados com sucesso!"
+                    close={loadItem}
+                />
+            )}
 
         </div>
     );

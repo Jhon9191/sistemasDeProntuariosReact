@@ -11,7 +11,6 @@ const Signim = () => {
     const [password, setPassword] = useState("")
     const [passwordEmpty, setPasswordEmpty] = useState(false)
     const [ showPostModal, setShoePostModal ] = useState(false);
-
     const { signin, user } = useContext(AuthContext)
 
     useEffect(() => {

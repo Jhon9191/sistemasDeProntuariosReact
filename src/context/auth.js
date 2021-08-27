@@ -12,14 +12,10 @@ function AuthProvider({ children }) {
     const [user, setUser] = useState();
     const [loadingAuth, setLoagingAuth] = useState(true);
     const [loading, setLoaging] = useState(false);
-
     const [list, setList] = useState([]);
-
     const [starPage, setStarPage] = useState(0);
     const [endPage, setEndPage] = useState(3);
     const [page, setPage] = useState(1);
-
-
     const [list2, setList2] = useState([]);
 
     const nextPage = () => {
@@ -118,7 +114,9 @@ function AuthProvider({ children }) {
             previusPage,
             signup,
             logoutUser,
-            signin
+            signin,
+            setUser,
+            storageUser
         }}>
             {children}
         </AuthContext.Provider>
