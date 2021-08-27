@@ -16,13 +16,13 @@ function Appointment() {
     const { logoutUser, user, setUser, storageUser } = useContext(AuthContext)
     const [cpf, setCpf] = useState("");
     const [name, setName] = useState("");
-    const [ showPostModal, setShoePostModal ] = useState(false);
+    const [showPostModal, setShoePostModal] = useState(false);
 
     function logout() {
         logoutUser();
     }
 
-    const loadItem = () =>{
+    const loadItem = () => {
         setShoePostModal(!showPostModal);
     }
 
@@ -31,24 +31,38 @@ function Appointment() {
             firebase.firestore().collection('users')
                 .doc(user.uid).update({
                     name: name
-                }).then(()=>{
+                }).then(() => {
                     let data = {
-                        ...user, 
+                        ...user,
                         name: name
                     }
                     setUser(data);
                     storageUser(data);
                     loadItem();
                 })
-        }
-        if (cpf !== "") {
+        } else if (cpf !== "") {
             firebase.firestore().collection('users')
                 .doc(user.uid).update({
                     cpf: cpf
-                }).then(()=>{
+                }).then(() => {
                     let data = {
-                        ...user, 
+                        ...user,
                         cpf: cpf
+                    }
+                    setUser(data);
+                    storageUser(data);
+                    loadItem();
+                })
+        } else if (name !== "" && cpf !== "") {
+            firebase.firestore().collection('users')
+                .doc(user.uid).update({
+                    cpf: cpf,
+                    name: name
+                }).then(() => {
+                    let data = {
+                        ...user,
+                        cpf: cpf,
+                        name: name
                     }
                     setUser(data);
                     storageUser(data);
