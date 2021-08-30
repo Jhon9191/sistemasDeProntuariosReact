@@ -52,5 +52,10 @@ form button:hover{
     height: 15px;
 }
 
+.nemptyNotification{
+    font-size: 0.95em;
+    color: #ffffff;
+    margin: 3px;
+}
 
 
