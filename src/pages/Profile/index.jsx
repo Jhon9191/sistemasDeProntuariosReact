@@ -13,7 +13,7 @@ import Modal from '../../components/Modal'
 
 function Appointment() {
 
-    const { logoutUser, user, setUser, storageUser } = useContext(AuthContext)
+    const { logoutUser, user, setUser, storageUser, recuperarSenha } = useContext(AuthContext)
     const [cpf, setCpf] = useState("");
     const [name, setName] = useState("");
     const [showPostModal, setShoePostModal] = useState(false);
@@ -89,7 +89,7 @@ function Appointment() {
                         <InputPerson funcao={(e) => setCpf(e.target.value)} type="text" placeholder="CPF:" />
                         <ButtonPerson func={updateInformations} text="Salvar alterações" />
                         <ButtonPerson text="Sair" func={logout} />
-                        <Link className="recuperar" to="Marcar" >Recuperar senha</Link>
+                        <Link onClick={()=>recuperarSenha(user.email)} className="recuperar" >Recuperar senha</Link>
                     </form>
                 </div>
             </div>

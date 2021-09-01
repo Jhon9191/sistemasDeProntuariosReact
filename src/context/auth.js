@@ -4,7 +4,7 @@ import React, {
     createContext
 } from 'react';
 import firebase from "../services/firebase"
-
+import { toast } from 'react-toastify'
 export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
@@ -74,6 +74,13 @@ function AuthProvider({ children }) {
             })
     }
 
+    async function recuperarSenha(email){
+        await firebase.auth().sendPasswordResetEmail(email)
+        .then(() => {
+            toast.success("E-mail enviado com sucesso para redefinir sua senha!")
+        })
+    }
+
     const signin = async (email, password) => {
         await firebase.auth().signInWithEmailAndPassword(email, password)
             .then(async (value) => {
@@ -116,7 +123,8 @@ function AuthProvider({ children }) {
             logoutUser,
             signin,
             setUser,
-            storageUser
+            storageUser,
+            recuperarSenha
         }}>
             {children}
         </AuthContext.Provider>

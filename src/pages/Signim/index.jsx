@@ -3,7 +3,7 @@ import styles from './styles.css';
 import { AuthContext } from '../../context/auth';
 import { Link } from 'react-router-dom'
 import Modal from '../../components/Modal'
-
+import { toast } from 'react-toastify'
 const Signim = () => {
 
     const [email, setEmail] = useState("")
@@ -11,16 +11,15 @@ const Signim = () => {
     const [password, setPassword] = useState("")
     const [passwordEmpty, setPasswordEmpty] = useState(false)
     const [ showPostModal, setShoePostModal ] = useState(false);
-    const { signin, user } = useContext(AuthContext)
+    const { signin, recuperarSenha } = useContext(AuthContext);
+    const [user, setUser] = useState({});
 
-    useEffect(() => {
-        if (email !== "") {
-            setEmailEmpty(false)
+    useEffect(()=>{
+        const storageUser = localStorage.getItem("userDate");
+        if (storageUser) {
+            setUser(JSON.parse(storageUser));
         }
-        if (password !== "") {
-            setPasswordEmpty(false)
-        }
-    }, [email, password]);
+    },[])
 
     function logar(e) {
         e.preventDefault();
@@ -30,11 +29,17 @@ const Signim = () => {
             loadItem()
         }
         if (email === "") {
-            setEmailEmpty(true)
+            toast.warn("Preencha o campo de e-mail!");
         }
         if (password === "") {
-            setPasswordEmpty(true)
+            toast.warn("Preencha o campo de senha!");
         }
+    }
+    console.log(user)
+
+    function teste(e){
+        console.log(user.email)
+        //recuperarSenha(user.email);
     }
 
     const loadItem = () =>{
@@ -45,13 +50,10 @@ const Signim = () => {
         <div className="img">
             <div className="opac">
                 <div className="formulario">
-                    {/* <h1>Olá</h1> */}
                     <form>
                         <h2>Entrar</h2>
                         <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="E-mail:" />
-                        {emailEmpty && <h1 className="nemptyNotification">*Preencha o campo com seu e-mail!</h1>}
                         <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Senha:" />
-                        {passwordEmpty && <h1 className="nemptyNotification">*Preencha o campo com sua senha!</h1>}
                         <button type="submit" onClick={logar}>Login</button>
                         <Link id="linkto" to="/recover">Esqueci minha senha</Link>
                         <div style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 5 }}>

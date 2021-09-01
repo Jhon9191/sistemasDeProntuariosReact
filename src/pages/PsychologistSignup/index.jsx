@@ -3,11 +3,12 @@ import styles from './styles.css';
 import { toast } from 'react-toastify'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../context/auth';
-const Signup = () => {
+const PsychologistSignup = () => {
 
     const { signup } = useContext(AuthContext)
 
     const [cpf, setCpf] = useState("");
+    const [matricula, setMatricula] = useState("");
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
@@ -17,12 +18,37 @@ const Signup = () => {
     const [passwordEmpty, setPasswordEmpty] = useState(false);
     const [equalPassword, setEqualPassword] = useState(false);
     const [cpfEmpty, setCpfEmpty] = useState(false);
+    const [matriculaEmpty, setMatriculaEmpty] = useState(false);
     const [nameEmpty, setNameEmpty] = useState(false);
 
     function cadastrar(e) {
         e.preventDefault();
-        signup(email, password, name, cpf)
+        //signup(email, password, name, cpf)
     }
+
+    useEffect(() => {
+        if (cpf !== "") {
+            setCpfEmpty(false);
+        }
+        if (matricula !== "") {
+            setMatriculaEmpty(false);
+        }
+        if (name !== "") {
+            setNameEmpty(false);
+        }
+        if (email !== "") {
+            setEmailEmpty(false);
+        }
+        if (password !== "") {
+            setPasswordEmpty(false);
+        }
+        if (repeatPassword !== "") {
+            setEqualPassword(false);
+        }
+        if ((password == repeatPassword) && (passwordEmpty == false)  && (equalPassword == false)) {
+            setRepeatPasswordEmpty(false)
+        }
+    }, [email, password, repeatPassword, name, cpf]);
 
     function cadastrar(e) {
         e.preventDefault();
@@ -30,22 +56,31 @@ const Signup = () => {
             signup(email, password, name, cpf)
         }
         if (cpf === "") {
+            //setCpfEmpty(true);
             toast.warn("Preencha o campo de CPF!");
+        }
+        if (matricula === "") {
+            //setMatriculaEmpty(true);
+            toast.warn("Preencha o campo de matrícula!");
         }
         if (name === "") {
             toast.warn("Preencha o campo de nome!");
+            //setNameEmpty(true);
         }
         if (email === "") {
+            //setEmailEmpty(true);
             toast.warn("Preencha o campo de e-mail!");
         }
         if (password === "") {
             toast.warn("Preencha o campo de senha!");
+            //setPasswordEmpty(true);
         }
         if (repeatPassword === "") {
+            //setEqualPassword(true);
             toast.warn("Preencha o campo de repetir senha!");
         }
         if ((password !== repeatPassword) && (passwordEmpty == false)  && (equalPassword == false)) {
-            
+            //setRepeatPasswordEmpty(true)
         }
     }
 
@@ -57,6 +92,8 @@ const Signup = () => {
                         <h2>Cadastrar</h2>
                         <input onChange={(e) => setCpf(e.target.value)} type="text" placeholder="CPF:" />
                         {cpfEmpty && <h1 className="nemptyNotification">*Preencha o campo com seu CPF!</h1>}
+                        <input onChange={(e) => setCpf(e.target.value)} type="text" placeholder="Matricula:" />
+                        {matriculaEmpty && <h1 className="nemptyNotification">*Preencha o campo com seu Matricula!</h1>}
                         <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Nome:" />
                         {nameEmpty && <h1 className="nemptyNotification">*Preencha o campo com seu nome!</h1>}
                         <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email:" />
@@ -81,4 +118,4 @@ const Signup = () => {
     );
 }
 
-export default Signup;
+export default PsychologistSignup;

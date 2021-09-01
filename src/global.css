@@ -92,6 +92,7 @@ h2{
 }
 
 .formulario {
+    border-radius: 7px;
     background-color: #262626;
     width: 30%;
     padding: 2%;
