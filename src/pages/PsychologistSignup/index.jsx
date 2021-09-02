@@ -5,9 +5,7 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../../context/auth';
 const PsychologistSignup = () => {
 
-    const { signup } = useContext(AuthContext)
-
-    const [cpf, setCpf] = useState("");
+    const { PsychologistSignup } = useContext(AuthContext);
     const [matricula, setMatricula] = useState("");
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
@@ -16,15 +14,11 @@ const PsychologistSignup = () => {
     const [repeatPasswordEmpty, setRepeatPasswordEmpty] = useState(false);
     const [emailEmpty, setEmailEmpty] = useState(false);
     const [passwordEmpty, setPasswordEmpty] = useState(false);
+    const [cpf, setCpf] = useState("");
     const [equalPassword, setEqualPassword] = useState(false);
     const [cpfEmpty, setCpfEmpty] = useState(false);
     const [matriculaEmpty, setMatriculaEmpty] = useState(false);
     const [nameEmpty, setNameEmpty] = useState(false);
-
-    function cadastrar(e) {
-        e.preventDefault();
-        //signup(email, password, name, cpf)
-    }
 
     useEffect(() => {
         if (cpf !== "") {
@@ -53,30 +47,24 @@ const PsychologistSignup = () => {
     function cadastrar(e) {
         e.preventDefault();
         if (email !== "" && password !== "" && cpf !== "" && name !== "") {
-            signup(email, password, name, cpf)
+              PsychologistSignup(email, password, name, cpf, matricula);
         }
         if (cpf === "") {
-            //setCpfEmpty(true);
             toast.warn("Preencha o campo de CPF!");
         }
         if (matricula === "") {
-            //setMatriculaEmpty(true);
             toast.warn("Preencha o campo de matrícula!");
         }
         if (name === "") {
             toast.warn("Preencha o campo de nome!");
-            //setNameEmpty(true);
         }
         if (email === "") {
-            //setEmailEmpty(true);
             toast.warn("Preencha o campo de e-mail!");
         }
         if (password === "") {
             toast.warn("Preencha o campo de senha!");
-            //setPasswordEmpty(true);
         }
         if (repeatPassword === "") {
-            //setEqualPassword(true);
             toast.warn("Preencha o campo de repetir senha!");
         }
         if ((password !== repeatPassword) && (passwordEmpty == false)  && (equalPassword == false)) {
@@ -91,19 +79,11 @@ const PsychologistSignup = () => {
                     <form>
                         <h2>Cadastrar</h2>
                         <input onChange={(e) => setCpf(e.target.value)} type="text" placeholder="CPF:" />
-                        {cpfEmpty && <h1 className="nemptyNotification">*Preencha o campo com seu CPF!</h1>}
-                        <input onChange={(e) => setCpf(e.target.value)} type="text" placeholder="Matricula:" />
-                        {matriculaEmpty && <h1 className="nemptyNotification">*Preencha o campo com seu Matricula!</h1>}
+                        <input onChange={(e) => setMatricula(e.target.value)} type="text" placeholder="Matricula:" />
                         <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Nome:" />
-                        {nameEmpty && <h1 className="nemptyNotification">*Preencha o campo com seu nome!</h1>}
                         <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email:" />
-                        {emailEmpty && <h1 className="nemptyNotification">*Preencha o campo com seu  e-mail!</h1>}
                         <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Senha:" />
-                        {passwordEmpty && <h1 className="nemptyNotification">*Preencha o campo com sua senha</h1>}
-                        {repeatPasswordEmpty && <h1 className="nemptyNotification">*As senhas não se conhecidem</h1>}
                         <input onChange={(e) => setRepeatPassword(e.target.value)} type="password" placeholder="Repetir senha:" />
-                        {equalPassword && <h1 className="nemptyNotification">*Preencha o campo com sua senha novamente</h1>}
-                        {repeatPasswordEmpty && <h1 className="nemptyNotification">*As senhas não se conhecidem</h1>}
                         <button onClick={cadastrar} type="submit">Cadastrar</button>
                         <div style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 5 }}>
                             <input className="check" type="checkbox" defaultChecked={() => { }} onChange={() => { }} />

@@ -11,6 +11,8 @@ const Dashboard = () => {
     
     const { user } = useContext(AuthContext);
 
+    console.log(user)
+
     return (
         <div>
             <Sidebar />

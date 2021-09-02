@@ -46,8 +46,37 @@ function AuthProvider({ children }) {
         setList2(list.slice(starPage, endPage))
     }, [page]);
 
+    async function PsychologistSignup(email, password, name, cpf, matricula) {
+        await firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(async (value) => {
+                let uid = value.user.uid;
+                await firebase.firestore().collection('psychologist')
+                    .doc(uid).set({
+                        name: name,
+                        cpf: cpf,
+                        tipo: "psicologo",
+                        matricula: matricula
+                    })
+                    .then(() => {
+                        let data = {
+                            uid: uid,
+                            cpf: cpf,
+                            name: name,
+                            matricula: matricula,
+                            email: value.user.email,
+                            tipo: "psicologo"
+                        }
+                        toast.success("Cadastro realizado com sucesso!");
+                        setUser(data)
+                        storageUser(data)
+                    })
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
     async function signup(email, password, name, cpf) {
-        console.log(email, password, name)
         await firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(async (value) => {
                 let uid = value.user.uid;
@@ -74,11 +103,11 @@ function AuthProvider({ children }) {
             })
     }
 
-    async function recuperarSenha(email){
+    async function recuperarSenha(email) {
         await firebase.auth().sendPasswordResetEmail(email)
-        .then(() => {
-            toast.success("E-mail enviado com sucesso para redefinir sua senha!")
-        })
+            .then(() => {
+                toast.success("E-mail enviado com sucesso para redefinir sua senha!")
+            })
     }
 
     const signin = async (email, password) => {
@@ -124,7 +153,8 @@ function AuthProvider({ children }) {
             signin,
             setUser,
             storageUser,
-            recuperarSenha
+            recuperarSenha,
+            PsychologistSignup
         }}>
             {children}
         </AuthContext.Provider>
