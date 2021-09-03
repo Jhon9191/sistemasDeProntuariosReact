@@ -1,4 +1,4 @@
-import React ,{ useContext }from 'react';
+import React ,{ useContex, useContext }from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { AuthContext } from '../context/auth';
 const RouteWrapper = ({
@@ -24,8 +24,8 @@ const RouteWrapper = ({
         return <Redirect to="/dashboard" />
     }
     
-    if (signed && !isPrivate && user.tipo === "psicologo") {
-        return <Redirect to="/Consultas" />
+    if (signed && !isPrivate && user.tipo == "psicologo") {
+        return <Redirect to="/dashboard/psicologo" />
     }
     
     return (

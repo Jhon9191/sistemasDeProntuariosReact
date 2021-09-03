@@ -94,6 +94,7 @@ function AuthProvider({ children }) {
                             email: value.user.email,
                             tipo: "paciente"
                         }
+                        toast.success("Cadastro realizado com sucesso!")
                         setUser(data)
                         storageUser(data)
                     })
@@ -123,6 +124,7 @@ function AuthProvider({ children }) {
                     tipo: userProfile.data().tipo,
                     email: value.user.email,
                 }
+                toast.success("Logado com sucesso!")
                 setUser(data)
                 storageUser(data)
             })
