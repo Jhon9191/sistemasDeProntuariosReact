@@ -10,13 +10,14 @@ export const AuthContext = createContext({});
 function AuthProvider({ children }) {
 
     const [user, setUser] = useState();
-    const [loadingAuth, setLoagingAuth] = useState(true);
+    const [loadingAuth, setLoagingAuth] = useState(false);
     const [loading, setLoaging] = useState(false);
     const [list, setList] = useState([]);
     const [starPage, setStarPage] = useState(0);
     const [endPage, setEndPage] = useState(3);
     const [page, setPage] = useState(1);
     const [list2, setList2] = useState([]);
+    const [lastDocs, setLastDocs] = useState();
 
     const nextPage = () => {
         setPage(page + 1);
@@ -36,6 +37,7 @@ function AuthProvider({ children }) {
             const storageUser = localStorage.getItem("userDate");
             if (storageUser) {
                 setUser(JSON.parse(storageUser));
+                setLoagingAuth(true);
             }
         }
         loadStorage();
@@ -43,8 +45,38 @@ function AuthProvider({ children }) {
 
     useEffect(() => {
         setList2([]);
-        setList2(list.slice(starPage, endPage))
+        setList2(list2.slice(starPage, endPage))
     }, [page]);
+
+
+    //COMEÇA AQUI A CARREGAR OS PSICOLOGOS DO FIREBASE AQUI ESTA CERTO TEM QUE OLHAR 
+    //OS OUTROS COMPONENTES DE PAGINATOR PARA SABER O QUE ESTA ACONTECENDO
+    useEffect(() => {
+        firebase.firestore().collection("psychologist")
+            .get()
+            .then((snapshot) => {
+                updateSnapshot(snapshot);
+           })
+    }, []);
+
+    async function updateSnapshot(snapshot) {
+        let isEmpty = snapshot.size === 0;
+        let list = [];
+        if (!isEmpty) {
+            snapshot.forEach((doc) => {
+                list.push({
+                    id: doc.id,
+                    cpf: doc.data().cpf,
+                    matricula: doc.data().matricula,
+                    name: doc.data().name,
+                    tipo: doc.data().tipo
+                })
+            })
+        }
+        const lastDoc = snapshot.docs[snapshot.docs.length - 1]
+        setList2(psicologos => [...psicologos, ...list]);
+        setLastDocs(lastDoc);
+    }
 
     async function PsychologistSignup(email, password, name, cpf, matricula) {
         await firebase.auth().createUserWithEmailAndPassword(email, password)

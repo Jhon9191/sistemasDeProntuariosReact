@@ -8,7 +8,7 @@ const CardPsicologos = ({ item }) => {
                 <div style={{ flexDirection: 'row', display: 'flex'}}>
                     <FiUser size={70} color="#fff" />
                     <div>
-                        <h2>Nome: {item.nome}</h2>
+                        <h2>Nome: {item.name}</h2>
                         <h4>Especialidade: {item.especialidade}</h4>
                     </div>
                 </div>

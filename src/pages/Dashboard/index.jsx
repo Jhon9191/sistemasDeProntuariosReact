@@ -8,10 +8,8 @@ import { AuthContext } from '../../context/auth';
 import Header from '../../components/Header'
 import CardDashboard from '../../components/CardDashboard';
 const Dashboard = () => {
-    
-    const { user } = useContext(AuthContext);
 
-    console.log(user)
+    const { user } = useContext(AuthContext);
 
     return (
         <div>

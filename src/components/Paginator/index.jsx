@@ -7,7 +7,7 @@ import { AuthContext } from '../../context/auth'
 
 const Paginator = () => {
 
-    const { page, list, nextPage, previusPage } = useContext(AuthContext);
+    const { page, list2, nextPage, previusPage } = useContext(AuthContext);
 
     return (
         <div style={{ justifyContent: 'center', width: '100%', display: 'flex', flexDirection: 'row' }}>
@@ -20,7 +20,7 @@ const Paginator = () => {
                     </div>
                 }
                 <spam>{page}</spam>
-                {page === (Math.ceil(list.length / 3)) ? (
+                {page === (Math.ceil(list2.length / 3)) ? (
                     <BsFillCaretRightFill size={25} color="#F2F3FA" />
                 ) :
                     <div onClick={() => nextPage()}>
