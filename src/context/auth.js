@@ -18,6 +18,7 @@ function AuthProvider({ children }) {
     const [page, setPage] = useState(1);
     const [list2, setList2] = useState([]);
     const [lastDocs, setLastDocs] = useState();
+    const [cosultas, setConsultas] = useState([]);
 
     const nextPage = () => {
         setPage(page + 1);
@@ -49,6 +50,10 @@ function AuthProvider({ children }) {
     }, [page]);
 
 
+    //CARREGAR AGENDAMETNOS DE CONSULTAS
+
+
+
     //COMEÇA AQUI A CARREGAR OS PSICOLOGOS DO FIREBASE AQUI ESTA CERTO TEM QUE OLHAR 
     //OS OUTROS COMPONENTES DE PAGINATOR PARA SABER O QUE ESTA ACONTECENDO
     useEffect(() => {
@@ -56,8 +61,30 @@ function AuthProvider({ children }) {
             .get()
             .then((snapshot) => {
                 updateSnapshot(snapshot);
-           })
+            })
+        firebase.firestore().collection("schedules")
+            .get()
+            .then((snapshot) => {
+                updateAgendamentos(snapshot);
+            })
     }, []);
+
+    async function updateAgendamentos(snapshot) {
+        let isEmpty = snapshot.size === 0;
+        let list = [];
+        if (!isEmpty) {
+            snapshot.forEach((doc) => {
+                list.push({
+                    id: doc.id,
+                    cpf: doc.data().cpf,
+                    matricula: doc.data().matricula,
+                    name: doc.data().name,
+                    tipo: doc.data().tipo
+                })
+            })
+        }
+        setConsultas(cosultas => [...cosultas, ...list]);
+    }
 
     async function updateSnapshot(snapshot) {
         let isEmpty = snapshot.size === 0;
@@ -188,7 +215,8 @@ function AuthProvider({ children }) {
             setUser,
             storageUser,
             recuperarSenha,
-            PsychologistSignup
+            PsychologistSignup,
+            cosultas
         }}>
             {children}
         </AuthContext.Provider>

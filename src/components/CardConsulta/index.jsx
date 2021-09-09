@@ -1,7 +1,7 @@
 import React from "react";
 import { FiArrowRight } from 'react-icons/fi'
 
-const CardConsulta = ({ children, name, date, value }) => {
+const CardConsulta = ({ children, name, date, value, direction }) => {
     return (
         <div style={{
             width: '95%',
@@ -28,7 +28,7 @@ const CardConsulta = ({ children, name, date, value }) => {
                     <h2 style={{ color: "#fff", fontSize: 20 }}>{value}</h2>
                 </div>
             </div>
-            <FiArrowRight size={25} color="#fff"/>
+            <FiArrowRight style={{cursor: "pointer"}} onClick={direction} size={25} color="#fff"/>
         </div>
     )
 }
