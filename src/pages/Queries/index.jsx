@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Sidebar from '../../components/Sidebar';
 import { BsReverseLayoutTextWindowReverse } from 'react-icons/bs'
 
@@ -11,7 +11,12 @@ import { AuthContext } from '../../context/auth';
 
 function Queries() {
 
-    const { cosultas } = useContext(AuthContext);
+    const { cosultas, user } = useContext(AuthContext);
+
+    useEffect(() => {
+        console.log(cosultas)
+        console.log(user.uid)
+    },[])
 
     return (
         <div>

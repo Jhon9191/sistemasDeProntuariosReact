@@ -19,6 +19,7 @@ function AuthProvider({ children }) {
     const [list2, setList2] = useState([]);
     const [lastDocs, setLastDocs] = useState();
     const [cosultas, setConsultas] = useState([]);
+    const [uuid, setUuid] = useState(false);
 
     const nextPage = () => {
         setPage(page + 1);
@@ -38,6 +39,7 @@ function AuthProvider({ children }) {
             const storageUser = localStorage.getItem("userDate");
             if (storageUser) {
                 setUser(JSON.parse(storageUser));
+                setUuid(true)
                 setLoagingAuth(true);
             }
         }
@@ -52,22 +54,23 @@ function AuthProvider({ children }) {
 
     //CARREGAR AGENDAMETNOS DE CONSULTAS
 
-
-
     //COMEÇA AQUI A CARREGAR OS PSICOLOGOS DO FIREBASE AQUI ESTA CERTO TEM QUE OLHAR 
     //OS OUTROS COMPONENTES DE PAGINATOR PARA SABER O QUE ESTA ACONTECENDO
     useEffect(() => {
-        firebase.firestore().collection("psychologist")
-            .get()
-            .then((snapshot) => {
-                updateSnapshot(snapshot);
-            })
-        firebase.firestore().collection("schedules")
-            .get()
-            .then((snapshot) => {
-                updateAgendamentos(snapshot);
-            })
-    }, []);
+        console.log(user)
+        if (uuid == true) {
+            firebase.firestore().collection("psychologist")
+                .get()
+                .then((snapshot) => {
+                    updateSnapshot(snapshot);
+                })
+            firebase.firestore().collection("schedules")
+                .where("paciente", "==", user.uid).get()
+                .then((snapshot) => {
+                    updateAgendamentos(snapshot);
+                })
+        }
+    }, [uuid]);
 
     async function updateAgendamentos(snapshot) {
         let isEmpty = snapshot.size === 0;
