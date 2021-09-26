@@ -20,6 +20,7 @@ function AuthProvider({ children }) {
     const [lastDocs, setLastDocs] = useState();
     const [cosultas, setConsultas] = useState([]);
     const [uuid, setUuid] = useState(false);
+    const [psicologo, setPsicologo] = useState("Selecionar psicologo");
 
     const nextPage = () => {
         setPage(page + 1);
@@ -219,7 +220,9 @@ function AuthProvider({ children }) {
             storageUser,
             recuperarSenha,
             PsychologistSignup,
-            cosultas
+            cosultas,
+            psicologo,
+            setPsicologo
         }}>
             {children}
         </AuthContext.Provider>
