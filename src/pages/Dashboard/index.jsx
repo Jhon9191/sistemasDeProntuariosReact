@@ -22,7 +22,7 @@ const Dashboard = () => {
 
             <div className="content">
                 <div className="bodyContent">
-                    <h1 id="Title">Seja bem vindo paciente {user.name}</h1>
+                    <h1 id="Title">Seja bem vindo paciente Cafubira</h1>
                     <CardDashboard name="Quantidade de consultas" color="roxo" value={0} />
                     <CardDashboard name="Quantidade de psicólogos" color="roxso" value={0} />
                     <Link className="buttonMarcar" to="Marcar" id="met">Marcar consulta</Link>

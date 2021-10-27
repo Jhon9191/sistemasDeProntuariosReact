@@ -15,7 +15,7 @@ function Queries() {
 
     useEffect(() => {
         console.log(cosultas)
-        console.log(user.uid)
+        //console.log(user.uid)
     },[])
 
     return (
@@ -39,7 +39,15 @@ function Queries() {
                         <div style={{ width: '100%' }}>
                             <h1 id="Title">Consultas agendadas</h1>
                             <div className="centered">
-                                <CardConsulta direction={()=>alert("Consultas agendada")} name="e" date="12/12/2021" value="2" />
+                                {cosultas.map((item) => {
+                                    return(
+                                        <CardConsulta 
+                                        direction={()=>alert("Consultas agendada")} 
+                                        name={item.psicologo} 
+                                        date={item.date} 
+                                        value={item.status}
+                                    />);
+                                })}
                             </div>
                         </div>
                     )}

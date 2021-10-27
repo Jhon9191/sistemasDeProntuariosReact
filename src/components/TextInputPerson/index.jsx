@@ -2,11 +2,11 @@ import React from 'react';
 import './styles.css';
 import { BsFillCaretDownFill} from 'react-icons/bs'
 
-function TextInputPerson({ children, placeholder }) {
+function TextInputPerson({ children, placeholder, funcao }) {
     return (
         <div className="Textinput">
             {children}
-            <textarea placeholder={placeholder} maxLength={150}/>
+            <textarea onChange={funcao} placeholder={placeholder} maxLength={150}/>
         </div>
     );
 }

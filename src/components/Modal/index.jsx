@@ -26,7 +26,7 @@ export default function Modal({ emote, close, title, subtitle, margem, psicologo
               <div style={{height: 1, backgroundColor: "#D70052", width:'100%' }}></div>
             </div>
           )
-        })}
+        })}                             
         {/* <span style={{fontSize: 30}}>{emote}</span>
           <h1>{title}</h1>
           <span>{subtitle}</span> */}

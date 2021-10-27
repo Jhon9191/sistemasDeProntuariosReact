@@ -17,15 +17,15 @@ const CardConsulta = ({ children, name, date, value, direction }) => {
             <div style={{}}>
                 <div style={{ display: 'flex',flexDirection: 'row'}}>
                     <h2 style={{ color: "#fff", fontSize: 20 }}>Psicologo: </h2>
-                    <h2 style={{ color: "#fff", fontSize: 20 }}>{name}</h2>
+                    <h2 style={{ color: "#fff", fontSize: 20, marginLeft: 5  }}> {name}</h2>
                 </div>
                 <div style={{ display: 'flex',flexDirection: 'row'}}>
                     <h2 style={{ color: "#fff", fontSize: 20 }}>Data: </h2>
-                    <h2 style={{ color: "#fff", fontSize: 20 }}>{date}</h2>
+                    <h2 style={{ color: "#fff", fontSize: 20, marginLeft: 5  }}> {date}</h2>
                 </div>
                    <div style={{ display: 'flex',flexDirection: 'row'}}>
                     <h2 style={{ color: "#fff", fontSize: 20 }}>Status: </h2>
-                    <h2 style={{ color: "#fff", fontSize: 20 }}>{value}</h2>
+                    <h2 style={{ color: "#fff", fontSize: 20, marginLeft: 5  }}>{value}</h2>
                 </div>
             </div>
             <FiArrowRight style={{cursor: "pointer"}} onClick={direction} size={25} color="#fff"/>

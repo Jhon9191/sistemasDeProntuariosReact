@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import Sidebar from '../../components/Sidebar';
+import { toast } from 'react-toastify'
 import { BsReverseLayoutTextWindowReverse } from 'react-icons/bs'
 import { AuthContext } from '../../context/auth';
 import Header from '../../components/Header'
@@ -11,15 +12,23 @@ import Modal from '../../components/Modal'
 
 function Appointment() {
     
-    const { psicologo } = useContext(AuthContext);
-    const [showPostModal, setShoePostModal] = useState(false);
+    const { psicologo, createSchedule, user } = useContext(AuthContext);
+    const [ showPostModal, setShoePostModal ] = useState(false);
+    const [ time, setTime] = useState(0);
+    const [ date, setDate] = useState(0);
+    const [ description, setDescription ] = useState("");
 
     const loadItem = () => {
         setShoePostModal(!showPostModal);
     }
+
     function selectedpsicologo(e){
         e.preventDefault();
-        console.log(psicologo)
+        if(psicologo === "" || time === "" || date === "" || description === ""){
+            toast.error("Verifique os campos")
+        }else{
+            createSchedule(psicologo, time, date, description, user.uid);
+        } 
     }
 
     return (
@@ -36,11 +45,11 @@ function Appointment() {
                 <div className="bodyContent">
                     <h1 id="Title">Informe os dados para agendar uma consulta</h1>
                     <form className="centered">
-                        <InputPerson type="time"/>
-                        <InputPerson type="date"/>
+                        <InputPerson funcao={(e) => setTime(e.target.value)} type="time" />
+                        <InputPerson funcao={(e) => setDate(e.target.value)} type="date"/>
                         <InputPerson placeholder={psicologo} hasIcon={true} funcao={()=>loadItem()}/>
-                        <TextInputPerson placeholder="Descreva sua solicitação"/>
-                        <button type="submit" onClick={selectedpsicologo}>Agendar</button>
+                        <TextInputPerson funcao={(e) => setDescription(e.target.value)} placeholder="Descreva sua solicitação"/>
+                        <ButtonPerson text="Agendar" func={selectedpsicologo} />
                     </form>
                 </div>
             </div>
@@ -55,4 +64,4 @@ function Appointment() {
     );
 }
 
-export default Appointment;
+export default Appointment;  
