@@ -1,5 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
-import styles from './styles.css';
+import React, { useState, useContext } from 'react';
 import { toast } from 'react-toastify'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../context/auth';
@@ -12,17 +11,12 @@ const Signup = () => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
-    const [repeatPasswordEmpty, setRepeatPasswordEmpty] = useState(false);
-    const [emailEmpty, setEmailEmpty] = useState(false);
-    const [passwordEmpty, setPasswordEmpty] = useState(false);
-    const [equalPassword, setEqualPassword] = useState(false);
-    const [cpfEmpty, setCpfEmpty] = useState(false);
-    const [nameEmpty, setNameEmpty] = useState(false);
-
-    function cadastrar(e) {
-        e.preventDefault();
-        signup(email, password, name, cpf)
-    }
+    const [repeatPasswordEmpty] = useState(false);
+    const [emailEmpty] = useState(false);
+    const [passwordEmpty] = useState(false);
+    const [equalPassword] = useState(false);
+    const [cpfEmpty] = useState(false);
+    const [nameEmpty] = useState(false);
 
     function cadastrar(e) {
         e.preventDefault();
@@ -43,9 +37,6 @@ const Signup = () => {
         }
         if (repeatPassword === "") {
             toast.warn("Preencha o campo de repetir senha!");
-        }
-        if ((password !== repeatPassword) && (passwordEmpty == false)  && (equalPassword == false)) {
-            
         }
     }
 

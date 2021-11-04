@@ -10,7 +10,8 @@ export default function Modal({ emote, close, title, subtitle, margem, psicologo
   const { list2, setPsicologo } = useContext(AuthContext);
 
   function setar(item){
-    setPsicologo(item.name);
+    //console.log(item)
+    setPsicologo(item);
   }
 
   return (

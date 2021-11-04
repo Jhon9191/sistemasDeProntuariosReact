@@ -5,6 +5,7 @@ import React, {
 } from 'react';
 import firebase from "../services/firebase"
 import { toast } from 'react-toastify'
+
 export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
@@ -19,8 +20,21 @@ function AuthProvider({ children }) {
     const [list2, setList2] = useState([]);
     const [lastDocs, setLastDocs] = useState();
     const [cosultas, setConsultas] = useState([]);
-    const [uuid, setUuid] = useState(false);
     const [psicologo, setPsicologo] = useState("Selecionar psicologo");
+    const [listPacientes, setListPacientes] = useState([]);
+    const [uuid, setUuid] = useState(false);
+
+    useEffect(() => {
+        const loadStorage = () => {
+            const storageUser = localStorage.getItem("userDate");
+            if (storageUser) {
+                setUser(JSON.parse(storageUser));
+                setUuid(true)
+                setLoagingAuth(true);
+            }
+        }
+        loadStorage();
+    }, [])
 
     const nextPage = () => {
         setPage(page + 1);
@@ -36,52 +50,20 @@ function AuthProvider({ children }) {
     }
 
     useEffect(() => {
-        const loadStorage = () => {
-            const storageUser = localStorage.getItem("userDate");
-            if (storageUser) {
-                setUser(JSON.parse(storageUser));
-                setUuid(true)
-                setLoagingAuth(true);
-            }
-        }
-        loadStorage();
-    }, [])
-
-    useEffect(() => {
-        setList2([]);
-        setList2(list2.slice(starPage, endPage))
-    }, [page]);
-
-    async function createSchedule(psicologo, time, date, description, name) {
-        firebase.firestore().collection("schedules")
-            .where("paciente", "==", user.uid).get()
-            .then((snapshot) => {
-                if (snapshot.size > 0) {
-                    toast.error("Já existe uma consulta pendente")
-                } else {
-                    firebase.firestore().collection('schedules')
-                        .doc(user.uid).set({
-                            psicologo: psicologo,
-                            time: time,
-                            date: date,
-                            description: description,
-                            paciente: name,
-                            status: 'Em andamento'
-                        }).then((snapshot) => {
-                            toast.success("Sua cosulta foi marcada com sucesso!")
-                        })
-                }
-            })
-    }
-
-    //CARREGAR AGENDAMETNOS DE CONSULTAS
-
-    //COMEÇA AQUI A CARREGAR OS PSICOLOGOS DO FIREBASE AQUI ESTA CERTO TEM QUE OLHAR 
-    //OS OUTROS COMPONENTES DE PAGINATOR PARA SABER O QUE ESTA ACONTECENDO
-
-    useEffect(() => {
-        if (uuid == true) {
+        if(!!user)
+        if (user.tipo === "paciente") {
             firebase.firestore().collection("psychologist")
+                .get()
+                .then((snapshot) => {
+                    updateSnapshot(snapshot);
+                })
+            firebase.firestore().collection("schedules")
+                .where("paciente", "==", user.uid).get()
+                .then((snapshot) => {
+                    updateAgendamentos(snapshot);
+                })
+        }else{
+            firebase.firestore().collection("users")
                 .get()
                 .then((snapshot) => {
                     updateSnapshot(snapshot);
@@ -93,31 +75,14 @@ function AuthProvider({ children }) {
                 })
         }
     }, [uuid]);
+    
+    useEffect(() => {
+        func();
+    }, [list, page]);
 
-    async function thereIsQuery() {
-        firebase.firestore().collection("schedules")
-            .where("paciente", "==", user.uid).get()
-            .then((snapshot) => {
-                if (snapshot.size > 0) {
-                    toast.error("Já existe uma consulta pendente")
-                }
-            })
-    }
-
-    async function updateAgendamentos(snapshot) {
-        let isEmpty = snapshot.size === 0;
-        let list = [];
-        if (!isEmpty) {
-            snapshot.forEach((doc) => {
-                list.push({
-                    id: doc.id,
-                    psicologo: doc.data().psicologo,
-                    status: doc.data().status,
-                    date: doc.data().date,
-                })
-            })
-        }
-        setConsultas(cosultas => [...cosultas, ...list]);
+    const func = () => {
+        setList2([]);
+        setList2(list.slice(starPage, endPage));
     }
 
     async function updateSnapshot(snapshot) {
@@ -135,8 +100,52 @@ function AuthProvider({ children }) {
             })
         }
         const lastDoc = snapshot.docs[snapshot.docs.length - 1]
-        setList2(psicologos => [...psicologos, ...list]);
+        setList(psicologos => [...psicologos, ...list]);
         setLastDocs(lastDoc);
+    }
+
+    async function createSchedule(psicologo, time, date, description, name) {
+        firebase.firestore().collection("schedules")
+            .where("paciente", "==", user.uid).get()
+            .then((snapshot) => {
+                if (snapshot.size > 0) {
+                    toast.error("Já existe uma consulta pendente")
+                } else {
+                    firebase.firestore().collection('schedules')
+                        .doc(user.uid).set({
+                            psicologo: psicologo.id,
+                            time: time,
+                            date: date,
+                            description: description,
+                            paciente: name,
+                            status: 'Em andamento'
+                        }).then((snapshot) => {
+                            toast.success("Sua cosulta foi marcada com sucesso!")
+                        })
+                    }
+                })
+    }
+
+   
+    //CARREGAR AGENDAMETNOS DE CONSULTAS
+
+    //COMEÇA AQUI A CARREGAR OS PSICOLOGOS DO FIREBASE AQUI ESTA CERTO TEM QUE OLHAR 
+    //OS OUTROS COMPONENTES DE PAGINATOR PARA SABER O QUE ESTA ACONTECENDO
+
+    async function updateAgendamentos(snapshot) {
+        let isEmpty = snapshot.size === 0;
+        let list = [];
+        if (!isEmpty) {
+            snapshot.forEach((doc) => {
+                list.push({
+                    id: doc.id,
+                    psicologo: doc.data().psicologo,
+                    status: doc.data().status,
+                    date: doc.data().date,
+                })
+            })
+        }
+        setConsultas(cosultas => [...cosultas, ...list]);
     }
 
     async function PsychologistSignup(email, password, name, cpf, matricula) {
@@ -204,6 +213,26 @@ function AuthProvider({ children }) {
             })
     }
 
+    const signinPsi = async (email, password) => {
+        await firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(async (value) => {
+                let uid = value.user.uid;
+                const userProfile = await firebase.firestore().collection('psychologist')
+                    .doc(uid).get()
+                let data = {
+                    uid: uid,
+                    cpf: userProfile.data().cpf,
+                    name: userProfile.data().name,
+                    tipo: userProfile.data().tipo,
+                    email: value.user.email,
+                }
+                toast.success("Logado com sucesso!")
+                setUser(data)
+                storageUser(data)
+            })
+    }
+
+
     const signin = async (email, password) => {
         await firebase.auth().signInWithEmailAndPassword(email, password)
             .then(async (value) => {
@@ -254,7 +283,8 @@ function AuthProvider({ children }) {
             psicologo,
             setPsicologo,
             createSchedule,
-            thereIsQuery
+            listPacientes,
+            signinPsi
         }}>
             {children}
         </AuthContext.Provider>

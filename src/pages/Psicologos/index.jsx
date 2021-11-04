@@ -15,33 +15,40 @@ const Psicologos = () => {
     // const location = useLocation();
 
     //const [ page, setPage ] = useState(
-    const {list2} = useContext(AuthContext);
+    const { list, list2, user , listPacientes, setPage} = useContext(AuthContext);
 
     return (
         <div >
             <Sidebar />
             <div className="content">
-                <Header name="Psicologos">
-                    <FiUser size={25} />
-                </Header>
+                {user.tipo === "psicologo" ? (
+                    <Header name="Pacientes">
+                        <FiUser size={25} />
+                    </Header>
+                ) : (
+                    <Header name="Psicologos">
+                        <FiUser size={25} />
+                    </Header>
+                )}
             </div>
 
             <div className="content">
-                <div className="bodyContent">
-                    {list2.length == 0 ? (
-                        <AlertMessage text="Não existem psicologos disponíveis!" />
-                    ) : (
-                        <div style={{ width: '100%' }}>
-                            <h1 id="Title">Psicologos disponiveis</h1>
-                            {list2.map((item) => {
-                                return (
-                                    <CardPsicologos item={item} />
-                                )
-                            })}
-                            <Paginator />
-                        </div>
-                    )}
-                </div>
+                    <div className="bodyContent">
+                        {list.length == 0 ? (
+                            <AlertMessage text="Não existem pacientes!" />
+                        ) : (
+                            <div style={{ width: '100%' }} >
+                                <h1 id="Title">Lista de pacientes</h1>
+                                {list2.map((item) => {
+                                    return (
+                                        <CardPsicologos item={item} />
+                                    )
+                                })}
+                                <Paginator /> 
+                            </div>
+                        )}
+                    </div>
+                    
             </div>
         </div>
     )

@@ -1,7 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { FiHome, FiUser, FiSettings } from 'react-icons/fi'
-
 import './styles.css';
 
 const Header = ({ children, name }) => {

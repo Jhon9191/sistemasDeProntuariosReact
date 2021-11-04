@@ -1,6 +1,7 @@
 import React from "react";
 import { FiArrowRight } from 'react-icons/fi'
 
+import { Link } from 'react-router-dom';
 const CardConsulta = ({ children, name, date, value, direction }) => {
     return (
         <div style={{
@@ -28,7 +29,9 @@ const CardConsulta = ({ children, name, date, value, direction }) => {
                     <h2 style={{ color: "#fff", fontSize: 20, marginLeft: 5  }}>{value}</h2>
                 </div>
             </div>
+            <Link to="consultaAberta" id="met">
             <FiArrowRight style={{cursor: "pointer"}} onClick={direction} size={25} color="#fff"/>
+            </Link>
         </div>
     )
 }

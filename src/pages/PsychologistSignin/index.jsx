@@ -9,7 +9,7 @@ const Signim = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [ showPostModal, setShoePostModal ] = useState(false);
-    const { signin } = useContext(AuthContext);
+    const { signinPsi } = useContext(AuthContext);
     const [user, setUser] = useState({});
 
     useEffect(()=>{
@@ -22,7 +22,7 @@ const Signim = () => {
     function logar(e) {
         e.preventDefault();
         if (email !== "" && password !== "") {
-            signin(email, password)
+            signinPsi(email, password)
         }else{
             loadItem()
         }

@@ -13,7 +13,7 @@ const Sidebar = () => {
         <div className="navegation">
             <div>
             </div>
-            {user.tipo == "psicologo" ? (
+            {user.tipo === "psicologo" ? (
                 <Link to="/dashboard/psicologo">
                     <FiHome size={24} color="#fff" />
                     Dashboard
@@ -25,10 +25,17 @@ const Sidebar = () => {
                 </Link>
             )}
 
-            <Link to="/psicologos">
-                <FiUser size={24} color="#fff" />
-                Psicólogos
-            </Link>
+            {user.tipo === "psicologo" ? (
+                <Link to="/psicologos">
+                    <FiUser size={24} color="#fff" />
+                    Pacientes
+                </Link>
+            ) : (
+                <Link to="/psicologos">
+                    <FiUser size={24} color="#fff" />
+                    Psicólogos
+                </Link>
+            )}
 
             <Link to="/consultas">
                 <BsReverseLayoutTextWindowReverse size={24} color="#fff" />

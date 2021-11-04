@@ -9,10 +9,12 @@ import InputPerson from '../../components/InputPerson';
 import TextInputPerson from '../../components/TextInputPerson';
 import ButtonPerson from '../../components/ButtonPerson';
 import Modal from '../../components/Modal'
+import { useHistory } from 'react-router-dom';
 
 function Appointment() {
     
-    const { psicologo, createSchedule, user } = useContext(AuthContext);
+    const history = useHistory()
+    const { psicologo, setPsicologo, createSchedule, user } = useContext(AuthContext);
     const [ showPostModal, setShoePostModal ] = useState(false);
     const [ time, setTime] = useState(0);
     const [ date, setDate] = useState(0);
@@ -25,9 +27,10 @@ function Appointment() {
     function selectedpsicologo(e){
         e.preventDefault();
         if(psicologo === "" || time === "" || date === "" || description === ""){
-            toast.error("Verifique os campos")
-        }else{
+            toast.error("Verifique os campos");
+        }else if (psicologo !== "" || time !== "" || date !== "" || description !== ""){
             createSchedule(psicologo, time, date, description, user.uid);
+            history.push("/dashboard")
         } 
     }
 
@@ -47,7 +50,7 @@ function Appointment() {
                     <form className="centered">
                         <InputPerson funcao={(e) => setTime(e.target.value)} type="time" />
                         <InputPerson funcao={(e) => setDate(e.target.value)} type="date"/>
-                        <InputPerson placeholder={psicologo} hasIcon={true} funcao={()=>loadItem()}/>
+                        <InputPerson placeholder={psicologo.name} hasIcon={true} funcao={()=>loadItem()}/>
                         <TextInputPerson funcao={(e) => setDescription(e.target.value)} placeholder="Descreva sua solicitação"/>
                         <ButtonPerson text="Agendar" func={selectedpsicologo} />
                     </form>

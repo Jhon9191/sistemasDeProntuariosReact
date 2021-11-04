@@ -42,7 +42,7 @@ function Queries() {
                                 {cosultas.map((item) => {
                                     return(
                                         <CardConsulta 
-                                        direction={()=>alert("Consultas agendada")} 
+                                        //direction={()=>alert("Consultas agendada")} 
                                         name={item.psicologo} 
                                         date={item.date} 
                                         value={item.status}
