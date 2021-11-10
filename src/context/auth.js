@@ -69,7 +69,7 @@ function AuthProvider({ children }) {
                     updateSnapshot(snapshot);
                 })
             firebase.firestore().collection("schedules")
-                .where("paciente", "==", user.uid).get()
+                .where("psicologo", "==", user.uid).get()
                 .then((snapshot) => {
                     updateAgendamentos(snapshot);
                 })

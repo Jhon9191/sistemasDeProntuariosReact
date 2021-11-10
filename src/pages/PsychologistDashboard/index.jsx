@@ -9,7 +9,7 @@ import Header from '../../components/Header'
 import CardDashboard from '../../components/CardDashboard';
 const PsychologistDashboard = () => {
     
-    const { user } = useContext(AuthContext);
+    const { user, cosultas } = useContext(AuthContext);
 
     return (
         <div>
@@ -23,8 +23,8 @@ const PsychologistDashboard = () => {
             <div className="content">
                 <div className="bodyContent">
                     <h1 id="Title">Seja bem vindo {user.name}</h1>
-                    <CardDashboard name="Quantidade de consultas" color="roxo" value={0} />
-                    <Link className="buttonMarcar" to="Marcar" id="met">Ver consulta</Link>
+                    <CardDashboard name="Quantidade de consultas marcadas" color="roxo" value={cosultas.length} />
+                    <Link className="buttonMarcar" to="/consultas" id="met">Ver consultas</Link>
                 </div>
             </div>
         </div>

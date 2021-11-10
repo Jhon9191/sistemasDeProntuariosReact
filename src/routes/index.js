@@ -12,6 +12,7 @@ import Profile from '../pages/Profile';
 import Consultas from '../pages/Queries';
 import ConsultasAberta from '../pages/QueriesAberta';
 import PsicologoSignin from '../pages/PsychologistSignin'
+import NovoProntuario from '../pages/NewRecord'
 
 const Routes = () => {
     return (
@@ -27,6 +28,7 @@ const Routes = () => {
             <Route exact path="/psicologo/login" component={PsicologoSignin} />
             <Route exact path="/psicologo/cadastrar" component={PsicologoCadastro} />
             <Route exact path="/dashboard/psicologo" component={PsychologistDashboard} isPrivate/>
+            <Route exact path="/Novo/Prontuario" component={NovoProntuario} isPrivate/>
         </Switch>
     );
 }
