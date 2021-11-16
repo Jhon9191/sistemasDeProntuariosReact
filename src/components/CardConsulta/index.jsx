@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FiArrowRight } from 'react-icons/fi'
 
 import { Link } from 'react-router-dom';

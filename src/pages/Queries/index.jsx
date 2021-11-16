@@ -11,12 +11,11 @@ import { AuthContext } from '../../context/auth';
 
 function Queries() {
 
-    const { cosultas, user } = useContext(AuthContext);
+    const { cosultas, user, setUserSelected } = useContext(AuthContext);
 
     useEffect(() => {
         console.log(cosultas)
-        //console.log(user.uid)
-    },[])
+    }, [])
 
     return (
         <div>
@@ -30,24 +29,44 @@ function Queries() {
 
             <div className="content">
                 <div className="bodyContent">
-                    {cosultas.length == 0 ? (
-                        <div style={{ width: '100%' }}>    
+                    {cosultas.length == 0 && user.tipo == "psicologo" && (
                         <AlertMessage text="Não existem consultas agendadas!" />
-                        <Link className="buttonMarcar" to="Marcar" id="met">Marcar consulta</Link>
+                    )}
+                    {cosultas.length == 0 && user.tipo == "paciente" ? (
+                        <div style={{ width: '100%' }}>
+                            <AlertMessage text="Não existem consultas agendadas!" />
+                            <Link className="buttonMarcar" to="Marcar" id="met">Marcar consulta</Link>
                         </div>
                     ) : (
                         <div style={{ width: '100%' }}>
                             <h1 id="Title">Consultas agendadas</h1>
                             <div className="centered">
-                                {cosultas.map((item) => {
-                                    return(
-                                        <CardConsulta 
-                                        //direction={()=>alert("Consultas agendada")} 
-                                        name={item.psicologo} 
-                                        date={item.date} 
-                                        value={item.status}
-                                    />);
-                                })}
+                                {user.tipo == "psicologo" ? (
+                                    <>
+                                        {cosultas.map((item) => {
+                                            return (
+                                                <CardConsulta
+                                                    key={item.id}
+                                                    direction={setUserSelected(item.id)}
+                                                    name={item.pacienteName}
+                                                    date={item.date}
+                                                    value={item.status}
+                                                />);
+                                        })}
+                                    </>
+                                ) : (
+                                    <>
+                                        {cosultas.map((item) => {
+                                            return (
+                                                <CardConsulta
+                                                    key={item.id}
+                                                    name={item.psicologoName}
+                                                    date={item.date}
+                                                    value={item.status}
+                                                />);
+                                        })}
+                                    </>
+                                )}
                             </div>
                         </div>
                     )}

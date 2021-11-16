@@ -11,17 +11,28 @@ import ButtonPerson from '../../components/ButtonPerson';
 import Modal from '../../components/Modal'
 import { useHistory } from 'react-router-dom';
 
+import firebase from "../../services/firebase"
+
 function NewRecord() {
-    
+
     const history = useHistory()
-    const { createSchedule, user } = useContext(AuthContext);
-    const [ time, setTime] = useState(0);
-    const [ date, setDate] = useState(0);
-    const [ description, setDescription ] = useState("");
+    const { userSelected, user } = useContext(AuthContext);
+    const [time, setTime] = useState(0);
+    const [date, setDate] = useState(0);
+    const [description, setDescription] = useState("");
 
 
-    function selectedpsicologo(e){
-        
+    function selectedpsicologo(e) {
+        e.preventDefault();
+        firebase.firestore().collection('schedules')
+            .doc(userSelected)
+            .collection('prontuarios')
+            .doc().set({
+                time: time,
+                date: date,
+                description: description,
+                status: 'Em andamento'
+            })
     }
 
     return (
@@ -38,8 +49,8 @@ function NewRecord() {
                     <h1 id="Title">Cadastro de prontuário</h1>
                     <form className="centered">
                         <InputPerson funcao={(e) => setTime(e.target.value)} type="time" />
-                        <InputPerson funcao={(e) => setDate(e.target.value)} type="date"/>
-                        <TextInputPerson funcao={(e) => setDescription(e.target.value)} placeholder="Descreva o atendimento"/>
+                        <InputPerson funcao={(e) => setDate(e.target.value)} type="date" />
+                        <TextInputPerson funcao={(e) => setDescription(e.target.value)} placeholder="Descreva o atendimento" />
                         <ButtonPerson text="Agendar" func={selectedpsicologo} />
                     </form>
                 </div>
@@ -48,4 +59,4 @@ function NewRecord() {
     );
 }
 
-export default NewRecord;  
+export default NewRecord;

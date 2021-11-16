@@ -23,6 +23,7 @@ function AuthProvider({ children }) {
     const [psicologo, setPsicologo] = useState("Selecionar psicologo");
     const [listPacientes, setListPacientes] = useState([]);
     const [uuid, setUuid] = useState(false);
+    const [userSelected, setUserSelected] = useState("");
 
     useEffect(() => {
         const loadStorage = () => {
@@ -114,10 +115,12 @@ function AuthProvider({ children }) {
                     firebase.firestore().collection('schedules')
                         .doc(user.uid).set({
                             psicologo: psicologo.id,
+                            psicologoName: psicologo.name,
+                            paciente: name,
+                            pacienteName: user.name,
                             time: time,
                             date: date,
                             description: description,
-                            paciente: name,
                             status: 'Em andamento'
                         }).then((snapshot) => {
                             toast.success("Sua cosulta foi marcada com sucesso!")
@@ -142,6 +145,8 @@ function AuthProvider({ children }) {
                     psicologo: doc.data().psicologo,
                     status: doc.data().status,
                     date: doc.data().date,
+                    psicologoName: doc.data().psicologoName,
+                    pacienteName: doc.data().pacienteName
                 })
             })
         }
@@ -284,7 +289,9 @@ function AuthProvider({ children }) {
             setPsicologo,
             createSchedule,
             listPacientes,
-            signinPsi
+            signinPsi,
+            setUserSelected,
+            userSelected
         }}>
             {children}
         </AuthContext.Provider>
