@@ -24,16 +24,18 @@ function NewRecord() {
 
     function selectedpsicologo(e) {
         e.preventDefault();
-        firebase.firestore().collection('schedules')
-            .doc(userSelected)
-            .collection('prontuarios')
-            .doc().set({
-                time: time,
-                date: date,
-                description: description,
-                status: 'Em andamento'
-            })
-    }
+        if(user.tipo === "psicologo"){
+            firebase.firestore().collection('schedules')
+                .doc(userSelected.id)
+                .collection('prontuarios')
+                .doc().set({
+                    time: time,
+                    date: date,
+                    description: description,
+                    status: 'Em andamento'
+                })
+        }
+}
 
     return (
         <div>

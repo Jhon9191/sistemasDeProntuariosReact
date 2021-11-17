@@ -8,14 +8,9 @@ import CardConsulta from '../../components/CardConsulta';
 import AlertMessage from '../../components/AlertMessage';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/auth';
-
 function Queries() {
 
     const { cosultas, user, setUserSelected } = useContext(AuthContext);
-
-    useEffect(() => {
-        console.log(cosultas)
-    }, [])
 
     return (
         <div>
@@ -47,7 +42,10 @@ function Queries() {
                                             return (
                                                 <CardConsulta
                                                     key={item.id}
-                                                    direction={setUserSelected(item.id)}
+                                                    direction={()=>setUserSelected({
+                                                        name:item.pacienteName,
+                                                        id:item.id 
+                                                    })}
                                                     name={item.pacienteName}
                                                     date={item.date}
                                                     value={item.status}

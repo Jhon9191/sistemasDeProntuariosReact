@@ -23,7 +23,7 @@ function AuthProvider({ children }) {
     const [psicologo, setPsicologo] = useState("Selecionar psicologo");
     const [listPacientes, setListPacientes] = useState([]);
     const [uuid, setUuid] = useState(false);
-    const [userSelected, setUserSelected] = useState("");
+    const [userSelected, setUserSelected] = useState({});
 
     useEffect(() => {
         const loadStorage = () => {
@@ -143,6 +143,7 @@ function AuthProvider({ children }) {
                 list.push({
                     id: doc.id,
                     psicologo: doc.data().psicologo,
+                    paciente: doc.data().paciente,
                     status: doc.data().status,
                     date: doc.data().date,
                     psicologoName: doc.data().psicologoName,
