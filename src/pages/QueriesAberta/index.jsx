@@ -5,7 +5,7 @@ import Header from '../../components/Header'
 import { Link } from 'react-router-dom';
 import AlertMessage from '../../components/AlertMessage';
 import { AuthContext } from '../../context/auth';
-
+import CardProntuario from '../../components/CardProntuario';
 import firebase from "../../services/firebase";
 const QueriesAberta = () => {
 
@@ -13,14 +13,15 @@ const QueriesAberta = () => {
     const [name, setName] = useState("João");
     const [prontuarios, setProntuarios] = useState([]);
 
-    useEffect(() => {
+    const carregar = () => {
         firebase.firestore().collection("schedules")
             .doc(userSelected.id)
             .collection("prontuarios").get()
             .then((snapshot) => {
                 updateProntuario(snapshot);
             })
-    }, []);
+    }
+
     const updateProntuario = (snapshot) => {
         let list = [];
         snapshot.forEach((doc) => {
@@ -49,15 +50,26 @@ const QueriesAberta = () => {
                     {prontuarios.length == 0 && user.tipo == "psicologo" && (
                         <AlertMessage text="Não existem prontuários deste paciente!" />
                     )}
-                    
-                     {/* CRIAR COMPONENTE PARA EXIBIR OS PRONTUARIOS DE UMA FORMA DINAMICA   
-                          */}
+                    <div className="centered">
+                        {prontuarios.map((prontuario) => {
+                            return (
+                                <CardProntuario
+                                    date={prontuario.date}
+                                    time={prontuario.time}
+                                    description={prontuario.description}
+                                />
+                            );
+                        })}
+                    </div>
 
-                    {user.tipo == "psicologo" && (
-                        <>
-                            <Link className="buttonMarcar" to="/Novo/Prontuario" id="met">Novo prontuário</Link>
-                        </>
-                    )}
+                    <div style={{ display: 'flex', flexDirection: 'row', marginTop: 10 }}>
+                        {prontuarios.length == 0 && (
+                            <button className="buttonMarcarW" onClick={carregar}>Carregar prontuários</button>
+                        )}
+                        {user.tipo == "psicologo" && (
+                            <Link className="buttonMarcar" style={{ marginLeft: 10 }} to="/Novo/Prontuario" id="met">Novo prontuário</Link>
+                        )}
+                    </div>
 
                 </div>
             </div>
