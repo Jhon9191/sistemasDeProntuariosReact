@@ -58,6 +58,10 @@ function Queries() {
                                             return (
                                                 <CardConsulta
                                                     key={item.id}
+                                                    direction={()=>setUserSelected({
+                                                        name:item.pacienteName,
+                                                        id:item.id 
+                                                    })}
                                                     name={item.psicologoName}
                                                     date={item.date}
                                                     value={item.status}

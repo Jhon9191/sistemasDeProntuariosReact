@@ -33,7 +33,6 @@ const QueriesAberta = () => {
         });
         setProntuarios(prontuarios => [...prontuarios, ...list]);
     }
-
     return (
         <div>
             <Sidebar />
